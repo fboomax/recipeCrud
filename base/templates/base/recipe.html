@@ -2,10 +2,10 @@
 
     {% block content %}
 
-        <h1>All Recipes</h1>
+        <h1>{{ trecipes.Name }}</h1>
 
         <div>
-            {% for recipe in recipes %}
+            {% for recipe in trecipes %}
 
                 <div>
                     <h5>

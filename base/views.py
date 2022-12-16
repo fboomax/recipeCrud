@@ -33,5 +33,9 @@ def recipes(request):
 
 
 def recipe(request, pk):
-    context = {'recipes': recipes}
+    recipe = None
+    for i in total_recipes:
+        if i['id'] == int(pk):
+            recipe = i
+    context = {'trecipes': recipe}
     return render(request, 'base/recipe.html', context)
