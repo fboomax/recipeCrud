@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+    {% block content %}
+
+        <h1>All Recipes</h1>
+
+        <div>
+            {% for recipe in recipes %}
+
+                <div>
+                    <h5>
+                        {{ recipe.id}} -- <a href="/recipe/{{recipe.id}}" >{{ recipe.Name }}</a>
+                    </h5>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    {% endblock %}

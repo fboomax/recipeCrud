@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+    {% block content %}
+
+        <h1>Recipes</h1>
+
+        <div>
+            {% for recipe in trecipes %}
+
+                <div>
+                    <h5>
+                        {{ recipe.id}} -- {{ recipe.Name }}
+                    </h5>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    {% endblock %}
