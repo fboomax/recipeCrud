@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'recipeCrud.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
+        "NAME": "recipedb",
+        "USER": "uth",
+        "PASSWORD": "cangetin",
         "HOST": "db",  # set in docker-compose.yml
         "PORT": 5432,  # default postgres port
     }
