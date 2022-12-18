@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+    {% block content %}
+
+        <h1>Recipes</h1>
+
+        <div>
+            {% for selectedRecipe in trecipes %}
+
+                <div>
+                    <h5>
+                        {{ selectedRecipe.id }} -- <a href="{% url 'recipe' selectedRecipe.id %}">{{ selectedRecipe.name }}</a>
+                    </h5>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    {% endblock %}
