@@ -5,15 +5,9 @@
         <h1>Home</h1>
 
         <div>
-            {% for recipe in stepRecipes %}
-
-                <div>
-                    <h5>
-                        {{ recipe.id}} -- {{ recipe.title }}
-                    </h5>
-                </div>
-
-            {% endfor %}
+            <h2>
+                <a href="{% url 'recipes' %}">Recipes</a>
+            </h2>
         </div>
 
     {% endblock %}

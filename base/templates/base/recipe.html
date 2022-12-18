@@ -2,18 +2,16 @@
 
     {% block content %}
 
-        <h1>{{ trecipes.Name }}</h1>
+        <h1>{{ selectedRecipe.name }}</h1>
 
         <div>
-            {% for recipe in trecipes %}
 
-                <div>
-                    <h5>
-                        {{ recipe.id}} -- <a href="/recipe/{{recipe.id}}" >{{ recipe.Name }}</a>
-                    </h5>
-                </div>
+            <div>
+                <h5>
+                    {{ selectedRecipe.id }} -- <a href="/recipe/{{ selectedRecipe.id }}">{{ selectedRecipe.name }}</a>
+                </h5>
+            </div>
 
-            {% endfor %}
         </div>
 
     {% endblock %}

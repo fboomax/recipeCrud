@@ -5,11 +5,11 @@
         <h1>Recipes</h1>
 
         <div>
-            {% for recipe in trecipes %}
+            {% for selectedRecipe in trecipes %}
 
                 <div>
                     <h5>
-                        {{ recipe.id}} -- {{ recipe.Name }}
+                        {{ selectedRecipe.id }} -- <a href="{% url 'recipe' selectedRecipe.id %}">{{ selectedRecipe.name }}</a>
                     </h5>
                 </div>
 

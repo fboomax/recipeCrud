@@ -1,18 +1,18 @@
 from django.shortcuts import render
 
 total_recipes = [
-    {'id': 1, 'Name': 'Gemista', 'Category': 'Ladera', 'Difficulty': 'Medium', 'Total-minutes': 30, 'Total-steps': 2,
-     'Main-photo': 'photo-main', },
-    {'id': 2, 'Name': 'Traxanas', 'Category': 'Ladera', 'Difficulty': 'Medium', 'Total-minutes': 30, 'Total-steps': 2,
-     'Main-photo': 'photo-main', },
-    {'id': 3, 'Name': 'Pastitio', 'Category': 'Ladera', 'Difficulty': 'Medium', 'Total-minutes': 30, 'Total-steps': 2,
-     'Main-photo': 'photo-main', },
+    {'id': 1, 'name': 'Gemista', 'category': 'Ladera', 'difficulty': 'Medium', 'totalMinutes': 30, 'totalSteps': 2,
+     'mainPhoto': 'photo-main', },
+    {'id': 2, 'name': 'Traxanas', 'category': 'Ladera', 'difficulty': 'Medium', 'totalMinutes': 30, 'totalSteps': 2,
+     'mainPhoto': 'photo-main', },
+    {'id': 3, 'name': 'Pastitio', 'category': 'Ladera', 'difficulty': 'Medium', 'totalMinutes': 30, 'totalSteps': 2,
+     'mainPhoto': 'photo-main', },
 ]
 step_recipe = [
-    {'id': 1, 'title': 'Mageirema kima', 'Description': 'Vazooume ligo nero sto ..', 'Step-duration': 30,
+    {'id': 1, 'title': 'mageirema kima', 'Description': 'vazooume ligo nero sto ..', 'step-duration': 30,
      'Photo': 'photo1', 'Process-bar': 30},
-    {'id': 2, 'title': 'Mageirema kima', 'Description': 'Vazooume ligo nero sto ..', 'Step-duration': 30,
-     'Photo': 'photo1', 'Process-bar': 30}
+    {'id': 2, 'title': 'mageirema kima', 'Description': 'vazooume ligo nero sto ..', 'step-duration': 30,
+     'photo': 'photo1', 'process-bar': 30}
 ]
 
 ingredients = [
@@ -29,13 +29,15 @@ def home(request):
 
 def recipes(request):
     context = {'trecipes': total_recipes}
+    print(context)
     return render(request, 'base/recipes.html', context)
 
 
 def recipe(request, pk):
-    recipe = None
+    selectedRecipe = None
     for i in total_recipes:
         if i['id'] == int(pk):
-            recipe = i
-    context = {'trecipes': recipe}
+            selectedRecipe = i
+    context = {'selectedRecipe': selectedRecipe}
+    print(context)
     return render(request, 'base/recipe.html', context)
