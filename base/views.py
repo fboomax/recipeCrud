@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Recipe
 
 total_recipes = [
     {'id': 1, 'name': 'Gemista', 'category': 'Ladera', 'difficulty': 'Medium', 'totalMinutes': 30, 'totalSteps': 2,
@@ -23,12 +24,13 @@ ingredients = [
 
 
 def home(request):
-    context = {'stepRecipes': step_recipe}
-    return render(request, 'base/home.html', context)
+
+    return render(request, 'base/home.html')
 
 
 def recipes(request):
-    context = {'trecipes': total_recipes}
+    allRecipes = Recipe.objects.all()
+    context = {'allRecipes': allRecipes}
     print(context)
     return render(request, 'base/recipes.html', context)
 
