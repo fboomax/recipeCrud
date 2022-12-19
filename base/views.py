@@ -36,10 +36,8 @@ def recipes(request):
 
 
 def recipe(request, pk):
-    selectedRecipe = None
-    for i in total_recipes:
-        if i['id'] == int(pk):
-            selectedRecipe = i
+    selectedRecipe = Recipe.objects.get(id=pk)
+
     context = {'selectedRecipe': selectedRecipe}
     print(context)
     return render(request, 'base/recipe.html', context)
