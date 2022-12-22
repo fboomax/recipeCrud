@@ -1,43 +1,53 @@
-from django.shortcuts import render
-
-total_recipes = [
-    {'id': 1, 'name': 'Gemista', 'category': 'Ladera', 'difficulty': 'Medium', 'totalMinutes': 30, 'totalSteps': 2,
-     'mainPhoto': 'photo-main', },
-    {'id': 2, 'name': 'Traxanas', 'category': 'Ladera', 'difficulty': 'Medium', 'totalMinutes': 30, 'totalSteps': 2,
-     'mainPhoto': 'photo-main', },
-    {'id': 3, 'name': 'Pastitio', 'category': 'Ladera', 'difficulty': 'Medium', 'totalMinutes': 30, 'totalSteps': 2,
-     'mainPhoto': 'photo-main', },
-]
-step_recipe = [
-    {'id': 1, 'title': 'mageirema kima', 'Description': 'vazooume ligo nero sto ..', 'step-duration': 30,
-     'Photo': 'photo1', 'Process-bar': 30},
-    {'id': 2, 'title': 'mageirema kima', 'Description': 'vazooume ligo nero sto ..', 'step-duration': 30,
-     'photo': 'photo1', 'process-bar': 30}
-]
-
-ingredients = [
-    {'id': 1, 'ingredient': 'kima', 'Photo': 'photo1'},
-    {'id': 2, 'ingredient': 'kima', 'Photo': 'photo1'},
-    {'id': 3, 'ingredient': 'kima', 'Photo': 'photo1'},
-]
+from django.shortcuts import render, redirect
+from .models import Recipe
+from .forms import RecipeForm
 
 
 def home(request):
-    context = {'stepRecipes': step_recipe}
-    return render(request, 'base/home.html', context)
+    return render(request, 'base/home.html')
 
 
 def recipes(request):
-    context = {'trecipes': total_recipes}
+    allRecipes = Recipe.objects.all()
+    context = {'allRecipes': allRecipes}
     print(context)
     return render(request, 'base/recipes.html', context)
 
 
 def recipe(request, pk):
-    selectedRecipe = None
-    for i in total_recipes:
-        if i['id'] == int(pk):
-            selectedRecipe = i
+    selectedRecipe = Recipe.objects.get(id=pk)
+
     context = {'selectedRecipe': selectedRecipe}
     print(context)
     return render(request, 'base/recipe.html', context)
+
+
+def createRecipe(request):
+    form = RecipeForm()
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        print(form.is_valid())
+        if form.is_valid():
+            print(form)
+            nm = form.cleaned_data.get("name")
+            cat = form.cleaned_data.get("category")
+            dif = form.cleaned_data.get("difficulty")
+            st = form.cleaned_data.get("steps")
+            dur = form.cleaned_data.get("duration")
+            img = form.cleaned_data.get("image")
+            obj = Recipe.objects.create(
+                name=nm,
+                category=cat,
+                difficulty=dif,
+                duration=dur,
+                steps=st,
+                image=img
+            )
+            print(obj)
+            obj.save()
+            return redirect('recipes')
+        # else:
+        #     form = {}
+        #     return redirect('recipes')
+    context = {'form': form}
+    return render(request, 'base/recipe_form.html', context)

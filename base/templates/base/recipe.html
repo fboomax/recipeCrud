@@ -1,17 +1,20 @@
 {% extends 'main.html' %}
-
     {% block content %}
-
         <h1>{{ selectedRecipe.name }}</h1>
-
         <div>
-
-            <div>
-                <h5>
-                    {{ selectedRecipe.id }} -- <a href="/recipe/{{ selectedRecipe.id }}">{{ selectedRecipe.name }}</a>
-                </h5>
-            </div>
-
+            <h5>
+                {{ selectedRecipe.id }} -- <a href="/recipe/{{ selectedRecipe.id }}">{{ selectedRecipe.name }}</a>
+            </h5>
         </div>
-
+        <div>
+            <h3>ID: {{ selectedRecipe.id }}</h3>
+            <h3>Name: {{ selectedRecipe.name }}</h3>
+            <h3>Category: {{ selectedRecipe.category }}</h3>
+            <h3>Difficulty: {{ selectedRecipe.difficulty }}</h3>
+            <h3>Steps: {{ selectedRecipe.steps }}</h3>
+            <h3>Duration: {{ selectedRecipe.duration }}</h3>
+            <img src={{ selectedRecipe.image.url }} width="250" height="250">
+            <h3>Updated: {{ selectedRecipe.updated }}</h3>
+            <h3>Created: {{ selectedRecipe.created }}</h3>
+        </div>
     {% endblock %}

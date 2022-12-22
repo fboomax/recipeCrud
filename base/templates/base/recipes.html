@@ -4,13 +4,20 @@
 
         <h1>Recipes</h1>
 
+
         <div>
-            {% for selectedRecipe in trecipes %}
+            <div>
+                <a href="{% url 'create-recipe' %}">Create Recipe</a>
+            </div>
+            {% for selectedRecipe in allRecipes %}
 
                 <div>
                     <h5>
                         {{ selectedRecipe.id }} -- <a href="{% url 'recipe' selectedRecipe.id %}">{{ selectedRecipe.name }}</a>
                     </h5>
+                    <h3>{{ selectedRecipe.serialId }}</h3>
+                    <h3>{{ selectedRecipe.created }}</h3>
+                <img src={{ selectedRecipe.image.url }} width="250" height="250">
                 </div>
 
             {% endfor %}
