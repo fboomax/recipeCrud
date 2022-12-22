@@ -4,20 +4,24 @@
 
         <h1>Recipes</h1>
 
-
-        <div>
             <div>
                 <a href="{% url 'create-recipe' %}">Create Recipe</a>
             </div>
+        <div>
+
             {% for selectedRecipe in allRecipes %}
 
                 <div>
+
                     <h5>
                         {{ selectedRecipe.id }} -- <a href="{% url 'recipe' selectedRecipe.id %}">{{ selectedRecipe.name }}</a>
                     </h5>
                     <h3>{{ selectedRecipe.serialId }}</h3>
                     <h3>{{ selectedRecipe.created }}</h3>
                 <img src={{ selectedRecipe.image.url }} width="250" height="250">
+                    <br>
+                <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
+                <a href="{% url 'delete-recipe' selectedRecipe.id %}">Delete</a>
                 </div>
 
             {% endfor %}
