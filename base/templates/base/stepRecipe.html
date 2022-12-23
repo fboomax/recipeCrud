@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+    {% block content %}
+        <div>
+            <di>
+                <h1>{{ recipe.name }}</h1>
+            </di>
+            <div>
+                {% for stepRecipe in stepsRecipe %}
+                     <h3>----------------------</h3>
+                    <h3>{{ stepRecipe.recipe }}</h3>
+                    <h3>{{ stepRecipe.step }}</h3>
+                    <h3>{{ stepRecipe.title }}</h3>
+                    <h3>{{ stepRecipe.description }}</h3>
+                    <h3>{{ stepRecipe.duration }}</h3>
+                    <h3>{{ stepRecipe.image }}</h3>
+                {% endfor %}
+            </div>
+            <div>
+                <a href="">Edit</a>
+                <a href="">Delete</a>
+            </div>
+        </div>
+
+        <div>
+
+{#            {% for stepRecipe in stepRecipes %}#}
+
+                <div>
+{#                    <h5>#}
+{#                        {{ stepRecipe.id }} -- <a href="{% url 'recipe' selectedRecipe.id %}">{{ selectedRecipe.name }}</a>#}
+{#                    </h5>#}
+{#                    <h3>{{ stepRecipe.recipe }}</h3>#}
+{#                    <h3>{{ stepRecipe.step }}</h3>#}
+{#                <img src={{ stepRecipe.image.url }} width="250" height="250">#}
+                    <br>
+{#                <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>#}
+{#                <a href="{% url 'delete-recipe' selectedRecipe.id %}">Delete</a>#}
+                </div>
+
+{#            {% endfor %}#}
+        </div>
+
+    {% endblock %}

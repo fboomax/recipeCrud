@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Recipe
-from .forms import RecipeForm
+from .models import Recipe, StepRecipe, Ingredient
+from .forms import RecipeForm, StepRecipeForm, IngredientForm
 
 
 def home(request):
@@ -10,15 +10,12 @@ def home(request):
 def recipes(request):
     allRecipes = Recipe.objects.all()
     context = {'allRecipes': allRecipes}
-    print(context)
     return render(request, 'base/recipes.html', context)
 
 
 def recipe(request, pk):
     selectedRecipe = Recipe.objects.get(id=pk)
-
     context = {'selectedRecipe': selectedRecipe}
-    print(context)
     return render(request, 'base/recipe.html', context)
 
 
@@ -70,4 +67,30 @@ def deleteRecipe(request, pk):
         recipe.delete()
         return redirect('recipes')
     return render(request, 'base/delete.html', {'obj': recipe})
+
+def stepRecipe(request, recipe_pk):
+    recipe = Recipe.objects.get(id=recipe_pk)
+    stepsRecipe = recipe.steprecipe_set.all()
+
+    print("StepRecipe get recipe")
+    # print(recipe)
+    print(stepsRecipe)
+    # stepRecipes = StepRecipe.object.all()
+    context = {'recipe': recipe, 'stepsRecipe':stepsRecipe}
+    return render(request, 'base/stepRecipe.html', context)
+
+def createStepRecipe(request):
+    # stepRecipe = StepRecipe.objects.get(id=pk)
+    # form= StepRecipeForm(instance=stepRecipe)
+    if request.method == 'POST':
+        form = StepRecipeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+        else:
+            form = StepRecipeForm()
+            context = {'form':form}
+            return render(request, 'base/stepRecipe_form.html', context)
+
+
 

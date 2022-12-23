@@ -43,7 +43,7 @@ class StepRecipe(models.Model):
     description = models.TextField()
     # ingredient
     duration = models.FloatField(validators=[MinValueValidator(0.0)])
-    image = models.ImageField(upload_to='media')
+    image = models.ImageField(upload_to='media', null=True, blank=True)
     # progressBar
 
     updated = models.DateTimeField(auto_now=True)

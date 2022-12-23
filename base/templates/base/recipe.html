@@ -20,6 +20,9 @@
             <h3>Created: {{ selectedRecipe.created }}</h3>
         </div>
         <div>
+             <a href="/recipe/{{ selectedRecipe.id }}/step-recipe">Go Step Recipe</a>
+        </div>
+        <div>
             <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
         </div>
     </di>
