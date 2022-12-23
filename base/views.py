@@ -49,15 +49,16 @@ def createRecipe(request):
     context = {'form': form}
     return render(request, 'base/recipe_form.html', context)
 
+
 def updateRecipe(request, pk):
     recipe = Recipe.objects.get(id=pk)
     form = RecipeForm(instance=recipe)
-    if request.method=="POST":
+    if request.method == "POST":
         form = RecipeForm(request.POST, instance=recipe)
         if form.is_valid():
             form.save()
             return redirect('recipes')
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'base/recipe_form.html', context)
 
 
@@ -68,16 +69,31 @@ def deleteRecipe(request, pk):
         return redirect('recipes')
     return render(request, 'base/delete.html', {'obj': recipe})
 
-def stepRecipe(request, recipe_pk):
+firstAppear =False
+def stepsRecipe(request, recipe_pk):
+    # firstAppear = False
     recipe = Recipe.objects.get(id=recipe_pk)
-    stepsRecipe = recipe.steprecipe_set.all()
-
-    print("StepRecipe get recipe")
+    # stepsRecipe = recipe.steprecipe_set.all()
+    stepsRecipe = recipe.steprecipe_set.first()
+    next_page = stepsRecipe.id+1
+    # print("StepRecipe get recipe")
     # print(recipe)
     print(stepsRecipe)
+    firstAppear = True
     # stepRecipes = StepRecipe.object.all()
-    context = {'recipe': recipe, 'stepsRecipe':stepsRecipe}
-    return render(request, 'base/stepRecipe.html', context)
+    context = {'recipe': recipe, 'stepsRecipe': stepsRecipe, 'next_page': next_page}
+    return render(request, 'base/stepsRecipe.html', context)
+
+
+def eachStepRecipe(request, recipe_pk, step_pk):
+    recipe = Recipe.objects.get(id=recipe_pk)
+    # stepsRecipe = recipe.steprecipe_set.all()
+    eachStepRecipe = recipe.steprecipe_set.get(id=step_pk)
+    print(eachStepRecipe.id)
+    next_page = eachStepRecipe.id + 1
+    context = {'recipe': recipe, 'eachStepRecipe': eachStepRecipe, 'next_page':next_page}
+    return render(request, 'base/eachStepRecipe.html', context)
+
 
 def createStepRecipe(request):
     # stepRecipe = StepRecipe.objects.get(id=pk)
@@ -89,8 +105,5 @@ def createStepRecipe(request):
             return redirect('recipes')
         else:
             form = StepRecipeForm()
-            context = {'form':form}
+            context = {'form': form}
             return render(request, 'base/stepRecipe_form.html', context)
-
-
-

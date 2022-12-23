@@ -4,19 +4,33 @@
         <div>
             <di>
                 <h1>{{ recipe.name }}</h1>
+                <h1>{{ recipe.id }}</h1>
             </di>
             <div>
-                {% for stepRecipe in stepsRecipe %}
-                     <h3>----------------------</h3>
-                    <h3>{{ stepRecipe.recipe }}</h3>
-                    <h3>{{ stepRecipe.step }}</h3>
-                    <h3>{{ stepRecipe.title }}</h3>
-                    <h3>{{ stepRecipe.description }}</h3>
-                    <h3>{{ stepRecipe.duration }}</h3>
-                    <h3>{{ stepRecipe.image }}</h3>
-                {% endfor %}
+
+                    <h3>----------------------</h3>
+                    <h3>{{ stepsRecipe.recipe }}</h3>
+                    <h3>{{ stepsRecipe.step }}</h3>
+                    <h3>{{ stepsRecipe.title }}</h3>
+                    <h3>{{ stepsRecipe.description }}</h3>
+                    <h3>{{ stepsRecipe.duration }}</h3>
+                    <h3>{{ stepsRecipe.image }}</h3>
+
             </div>
+{#            <div>#}
+{#                {% for stepRecipe in stepsRecipe %}#}
+{#                     <h3>----------------------</h3>#}
+{#                    <h3>{{ stepRecipe.recipe }}</h3>#}
+{#                    <h3>{{ stepRecipe.step }}</h3>#}
+{#                    <h3>{{ stepRecipe.title }}</h3>#}
+{#                    <h3>{{ stepRecipe.description }}</h3>#}
+{#                    <h3>{{ stepRecipe.duration }}</h3>#}
+{#                    <h3>{{ stepRecipe.image }}</h3>#}
+{#                {% endfor %}#}
+{#            </div>#}
             <div>
+
+                <a href="/recipe/{{ recipe.id }}/steps-recipe/{{ next_page }}/">Go Step Recipe</a>
                 <a href="">Edit</a>
                 <a href="">Delete</a>
             </div>
