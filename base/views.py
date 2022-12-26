@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Recipe, StepRecipe, Ingredient
 from .forms import RecipeForm, StepRecipeForm, IngredientForm
 from django.core.paginator import Paginator
+from django.forms import modelformset_factory
 
 
 def home(request):
@@ -82,7 +83,8 @@ def listingStepRecipe(request, recipe_pk, step_pk):
 
 def updateStep(request, recipe_pk, step_pk):
     recipe = Recipe.objects.get(id=int(recipe_pk))
-    stepsRecipe = recipe.steprecipe_set.get(id=int(step_pk))
+    stepsRecipe = recipe.steprecipe_set.get(step=int(step_pk))
+    # stepsRecipe = recipe.steprecipe_set.all()
     form = StepRecipeForm(instance=stepsRecipe)
     if request.method == "POST":
         form = StepRecipeForm(request.POST, instance=stepsRecipe)
@@ -93,6 +95,38 @@ def updateStep(request, recipe_pk, step_pk):
             return redirect(url_current_step)
     context = {'form': form}
     return render(request, "base/step_form.html", context)
+
+# def updateStep(request, recipe_pk, step_pk):
+#     recipe = Recipe.objects.get(id=int(recipe_pk))
+#     StepRecipeFormset = modelformset_factory(StepRecipe,extra=0, max_num=1, fields=('__all__'))
+#     if request.method == "POST":
+#         formset = StepRecipeFormset(queryset=StepRecipe.objects.filter(recipe__pk=recipe.id))
+#         print(formset)
+#         if formset.is_valid():
+#             print(formset)
+#             # rc = formset.cleaned_data.get("recipe")
+#             st = formset.cleaned_data.get("step")
+#             tt = formset.cleaned_data.get("title")
+#             ds = formset.cleaned_data.get("description")
+#             dur = formset.cleaned_data.get("duration")
+#             img = formset.cleaned_data.get("image")
+#             obj = Recipe.objects.create(
+#                 # recipe=rc,
+#                 step=st,
+#                 title=tt,
+#                 description=ds,
+#                 duration=dur,
+#                 image=img
+#             )
+#             instances = formset.save(commit=False)
+#             for instance in instances:
+#                 instance.recipe__pk = recipe.id
+#                 instance.save()
+#             url_current_step = f'http://127.0.0.1:8000/recipe/{int(recipe_pk)}/steplist/{step_pk}/'
+#             return redirect(url_current_step)
+#     formset = StepRecipeFormset(queryset=StepRecipe.objects.filter(recipe__pk=recipe.id))
+#     context = {'form': formset}
+#     return render(request, "base/step_form.html", context)
 
 
 def createStepRecipe(request):
