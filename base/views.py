@@ -81,16 +81,16 @@ def listingStepRecipe(request, recipe_pk, step_pk):
     return render(request, "base/steplist.html", context)
 
 
-def updateStep(request, recipe_pk, step_pk):
+def updateStep(request, recipe_pk, step_num):
     recipe = Recipe.objects.get(id=int(recipe_pk))
-    stepsRecipe = recipe.steprecipe_set.get(step=int(step_pk))
+    stepsRecipe = recipe.steprecipe_set.get(step=int(step_num))
     # stepsRecipe = recipe.steprecipe_set.all()
     form = StepRecipeForm(instance=stepsRecipe)
     if request.method == "POST":
         form = StepRecipeForm(request.POST, instance=stepsRecipe)
         if form.is_valid():
             form.save()
-            url_current_step = f'http://127.0.0.1:8000/recipe/{int(recipe_pk)}/steplist/{step_pk}/'
+            url_current_step = f'http://127.0.0.1:8000/recipe/{int(recipe_pk)}/steplist/{step_num}/'
             print(url_current_step)
             return redirect(url_current_step)
     context = {'form': form}
