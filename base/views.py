@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Recipe, StepRecipe, Ingredient
 from .forms import RecipeForm, StepRecipeForm, IngredientForm
+from django.core.paginator import Paginator
 
 
 def home(request):
@@ -76,8 +77,6 @@ def stepsRecipe(request, recipe_pk):
     # stepsRecipe = recipe.steprecipe_set.all()
     stepsRecipe = recipe.steprecipe_set.first()
     next_page = stepsRecipe.id+1
-    # print("StepRecipe get recipe")
-    # print(recipe)
     print(stepsRecipe)
     firstAppear = True
     # stepRecipes = StepRecipe.object.all()
@@ -94,6 +93,16 @@ def eachStepRecipe(request, recipe_pk, step_pk):
     context = {'recipe': recipe, 'eachStepRecipe': eachStepRecipe, 'next_page':next_page}
     return render(request, 'base/eachStepRecipe.html', context)
 
+def listingStepRecipe(request, recipe_pk, step_pk):
+    recipe = Recipe.objects.get(id=int(recipe_pk))
+    print(recipe)
+    # step = StepRecipe.objects.all().order_by("id")
+    stepsRecipe = recipe.steprecipe_set.all()
+    print(stepsRecipe)
+    paginator = Paginator(stepsRecipe, per_page=1)
+    page_object = paginator.get_page(step_pk)
+    context = {"page_obj": page_object, "recipe_id": recipe_pk}
+    return render(request, "base/steplist.html", context)
 
 def createStepRecipe(request):
     # stepRecipe = StepRecipe.objects.get(id=pk)
