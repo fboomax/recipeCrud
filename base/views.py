@@ -70,28 +70,6 @@ def deleteRecipe(request, pk):
         return redirect('recipes')
     return render(request, 'base/delete.html', {'obj': recipe})
 
-firstAppear =False
-def stepsRecipe(request, recipe_pk):
-    # firstAppear = False
-    recipe = Recipe.objects.get(id=recipe_pk)
-    # stepsRecipe = recipe.steprecipe_set.all()
-    stepsRecipe = recipe.steprecipe_set.first()
-    next_page = stepsRecipe.id+1
-    print(stepsRecipe)
-    firstAppear = True
-    # stepRecipes = StepRecipe.object.all()
-    context = {'recipe': recipe, 'stepsRecipe': stepsRecipe, 'next_page': next_page}
-    return render(request, 'base/stepsRecipe.html', context)
-
-
-def eachStepRecipe(request, recipe_pk, step_pk):
-    recipe = Recipe.objects.get(id=recipe_pk)
-    # stepsRecipe = recipe.steprecipe_set.all()
-    eachStepRecipe = recipe.steprecipe_set.get(id=step_pk)
-    print(eachStepRecipe.id)
-    next_page = eachStepRecipe.id + 1
-    context = {'recipe': recipe, 'eachStepRecipe': eachStepRecipe, 'next_page':next_page}
-    return render(request, 'base/eachStepRecipe.html', context)
 
 def listingStepRecipe(request, recipe_pk, step_pk):
     recipe = Recipe.objects.get(id=int(recipe_pk))
@@ -116,3 +94,29 @@ def createStepRecipe(request):
             form = StepRecipeForm()
             context = {'form': form}
             return render(request, 'base/stepRecipe_form.html', context)
+
+
+
+
+# def stepsRecipe(request, recipe_pk):
+#     # firstAppear = False
+#     recipe = Recipe.objects.get(id=recipe_pk)
+#     # stepsRecipe = recipe.steprecipe_set.all()
+#     stepsRecipe = recipe.steprecipe_set.first()
+#     next_page = stepsRecipe.id+1
+#     print(stepsRecipe)
+#     firstAppear = True
+#     # stepRecipes = StepRecipe.object.all()
+#     context = {'recipe': recipe, 'stepsRecipe': stepsRecipe, 'next_page': next_page}
+#     return render(request, 'base/stepsRecipe.html', context)
+#
+
+# def eachStepRecipe(request, recipe_pk, step_pk):
+#     recipe = Recipe.objects.get(id=recipe_pk)
+#     # stepsRecipe = recipe.steprecipe_set.all()
+#     eachStepRecipe = recipe.steprecipe_set.get(id=step_pk)
+#     print(eachStepRecipe.id)
+#     next_page = eachStepRecipe.id + 1
+#     context = {'recipe': recipe, 'eachStepRecipe': eachStepRecipe, 'next_page':next_page}
+#     return render(request, 'base/eachStepRecipe.html', context)
+

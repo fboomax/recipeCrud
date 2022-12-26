@@ -20,7 +20,8 @@
             <h3>Created: {{ selectedRecipe.created }}</h3>
         </div>
         <div>
-             <a href="/recipe/{{ selectedRecipe.id }}/steps-recipe/">Go Step Recipe</a>
+{#             <a href="/recipe/{{ selectedRecipe.id }}/steps-recipe/">Go Step Recipe</a>#}
+             <a href="/recipe/{{ selectedRecipe.id }}/steplist/{{ 1 }}">Go Step Recipe</a>
         </div>
         <div>
             <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>

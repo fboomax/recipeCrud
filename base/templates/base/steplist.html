@@ -5,7 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    {% for kw in page_obj %}<pre>{{kw}}</pre>{% endfor %}
+    {% for step in page_obj %}
+        <pre>{{step.step}}</pre>
+        <pre>{{step.title}}</pre>
+        <pre>{{step.description}}</pre>
+        <pre>{{step.duration}}</pre>
+{#        <img src={{ step.image.url }} width="250" height="250">#}
+
+    {% endfor %}
 
     <div>
         {% if page_obj.has_previous %}
