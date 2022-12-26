@@ -73,14 +73,27 @@ def deleteRecipe(request, pk):
 
 def listingStepRecipe(request, recipe_pk, step_pk):
     recipe = Recipe.objects.get(id=int(recipe_pk))
-    print(recipe)
-    # step = StepRecipe.objects.all().order_by("id")
     stepsRecipe = recipe.steprecipe_set.all()
-    print(stepsRecipe)
     paginator = Paginator(stepsRecipe, per_page=1)
     page_object = paginator.get_page(step_pk)
     context = {"page_obj": page_object, "recipe_id": recipe_pk}
     return render(request, "base/steplist.html", context)
+
+
+def updateStep(request, recipe_pk, step_pk):
+    recipe = Recipe.objects.get(id=int(recipe_pk))
+    stepsRecipe = recipe.steprecipe_set.get(id=int(step_pk))
+    form = StepRecipeForm(instance=stepsRecipe)
+    if request.method == "POST":
+        form = StepRecipeForm(request.POST, instance=stepsRecipe)
+        if form.is_valid():
+            form.save()
+            url_current_step = f'http://127.0.0.1:8000/recipe/{int(recipe_pk)}/steplist/{step_pk}/'
+            print(url_current_step)
+            return redirect(url_current_step)
+    context = {'form': form}
+    return render(request, "base/step_form.html", context)
+
 
 def createStepRecipe(request):
     # stepRecipe = StepRecipe.objects.get(id=pk)

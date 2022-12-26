@@ -8,7 +8,7 @@ class RecipeForm(ModelForm):
 
 class StepRecipeForm(ModelForm):
     class Meta:
-        model: StepRecipe
+        model = StepRecipe
         fields = '__all__'
 
 class IngredientForm(ModelForm):

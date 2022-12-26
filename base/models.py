@@ -50,7 +50,7 @@ class StepRecipe(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.recipe} : {self.title}'
+        return f'Recipe.Id:{self.recipe.id} Step.Id{self.id} - {self.recipe} : {self.title}'
 
 
 class Ingredient(models.Model):

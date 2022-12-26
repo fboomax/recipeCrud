@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+    <div>
+        <a href="/recipe/{{ recipe_id }}/update-step/{{ page_obj.number }}">Edit</a>
+
+
+    </div>
     {% for step in page_obj %}
         <pre>{{step.step}}</pre>
         <pre>{{step.title}}</pre>
