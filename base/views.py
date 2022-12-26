@@ -96,53 +96,31 @@ def updateStep(request, recipe_pk, step_num):
     context = {'form': form}
     return render(request, "base/step_form.html", context)
 
-# def updateStep(request, recipe_pk, step_pk):
-#     recipe = Recipe.objects.get(id=int(recipe_pk))
-#     StepRecipeFormset = modelformset_factory(StepRecipe,extra=0, max_num=1, fields=('__all__'))
-#     if request.method == "POST":
-#         formset = StepRecipeFormset(queryset=StepRecipe.objects.filter(recipe__pk=recipe.id))
-#         print(formset)
-#         if formset.is_valid():
-#             print(formset)
-#             # rc = formset.cleaned_data.get("recipe")
-#             st = formset.cleaned_data.get("step")
-#             tt = formset.cleaned_data.get("title")
-#             ds = formset.cleaned_data.get("description")
-#             dur = formset.cleaned_data.get("duration")
-#             img = formset.cleaned_data.get("image")
-#             obj = Recipe.objects.create(
-#                 # recipe=rc,
-#                 step=st,
-#                 title=tt,
-#                 description=ds,
-#                 duration=dur,
-#                 image=img
-#             )
-#             instances = formset.save(commit=False)
-#             for instance in instances:
-#                 instance.recipe__pk = recipe.id
-#                 instance.save()
-#             url_current_step = f'http://127.0.0.1:8000/recipe/{int(recipe_pk)}/steplist/{step_pk}/'
-#             return redirect(url_current_step)
-#     formset = StepRecipeFormset(queryset=StepRecipe.objects.filter(recipe__pk=recipe.id))
-#     context = {'form': formset}
-#     return render(request, "base/step_form.html", context)
-
-
-def createStepRecipe(request):
-    # stepRecipe = StepRecipe.objects.get(id=pk)
-    # form= StepRecipeForm(instance=stepRecipe)
+def createStep(request, recipe_pk,):
+    form= StepRecipeForm()
     if request.method == 'POST':
-        form = StepRecipeForm(request.POST)
+        form = StepRecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            print(form)
+            rc = form.cleaned_data.get("recipe")
+            st = form.cleaned_data.get("step")
+            tt = form.cleaned_data.get("title")
+            ds = form.cleaned_data.get("description")
+            dr = form.cleaned_data.get("duration")
+            img = form.cleaned_data.get("image")
+            obj = StepRecipe.objects.create(
+                recipe=rc,
+                step=st,
+                title=tt,
+                description=ds,
+                duration=dr,
+                image=img
+            )
+            print(obj)
+            obj.save()
             return redirect('recipes')
-        else:
-            form = StepRecipeForm()
-            context = {'form': form}
-            return render(request, 'base/stepRecipe_form.html', context)
-
-
+    context = {'form': form}
+    return render(request, 'base/step_form.html', context)
 
 
 # def stepsRecipe(request, recipe_pk):

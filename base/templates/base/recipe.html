@@ -3,6 +3,9 @@
      <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
     <h1>{{ selectedRecipe.name }}</h1>
     <div>
+                <a href="/recipe/{{ selectedRecipe.id }}/create-step/">Create Step</a>
+    </div>
+    <div>
         <h5>
             {{ selectedRecipe.id }} -- <a href="/recipe/{{ selectedRecipe.id }}">{{ selectedRecipe.name }}</a>
         </h5>
