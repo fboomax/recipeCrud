@@ -75,9 +75,11 @@ def deleteRecipe(request, pk):
 def listingStepRecipe(request, recipe_pk, step_pk):
     recipe = Recipe.objects.get(id=int(recipe_pk))
     stepsRecipe = recipe.steprecipe_set.all()
+    stepsRecipe = recipe.steprecipe_set.order_by('step')
+    # ingredients = StepRecipe.objects.all().
     paginator = Paginator(stepsRecipe, per_page=1)
     page_object = paginator.get_page(step_pk)
-    context = {"page_obj": page_object, "recipe_id": recipe_pk}
+    context = {"page_obj": page_object, "recipe_id": recipe_pk, 'ingredients':ingredients}
     return render(request, "base/steplist.html", context)
 
 
@@ -121,6 +123,27 @@ def createStep(request, recipe_pk,):
             return redirect('recipes')
     context = {'form': form}
     return render(request, 'base/step_form.html', context)
+
+def deleteStep(request, recipe_pk, step_num):
+    recipe = Recipe.objects.get(id=int(recipe_pk))
+    stepsRecipe = recipe.steprecipe_set.get(step=int(step_num))
+    if request.method == 'POST':
+        stepsRecipe.delete()
+        recipe = Recipe.objects.get(id=int(recipe_pk))
+        stepsRecipe = recipe.steprecipe_set.all()
+        paginator = Paginator(stepsRecipe, per_page=1)
+        page_object = paginator.get_page(step_num)
+        context = {"page_obj": page_object, "recipe_id": recipe_pk}
+        return render(request, "base/steplist.html", context)
+    return render(request, 'base/delete_step.html', {'obj': stepsRecipe})
+
+
+# def deleteRecipe(request, pk):
+#     recipe = Recipe.objects.get(id=pk)
+#     if request.method == 'POST':
+#         recipe.delete()
+#         return redirect('recipes')
+#     return render(request, 'base/delete.html', {'obj': recipe})
 
 
 # def stepsRecipe(request, recipe_pk):

@@ -7,9 +7,13 @@
 {% block content %}
     <div>
         <a href="/recipe/{{ recipe_id }}/update-step/{{ page_obj.number }}">Edit</a>
-
-
     </div>
+    <div>
+        <a href="/recipe/{{ recipe_id }}/delete-step/{{ page_obj.number }}">Delete</a>
+    </div>
+{#    <div>#}
+{#        <a href="/recipe/{{ recipe_id }}/delete-step/{{ page_obj.number }}">Delete</a>#}
+{#    </div>#}
     {% for step in page_obj %}
         <pre>{{step.step}}</pre>
         <pre>{{step.title}}</pre>
@@ -18,7 +22,6 @@
 {#        <img src={{ step.image.url }} width="250" height="250">#}
 
     {% endfor %}
-
     <div>
         {% if page_obj.has_previous %}
         <a href="/recipe/{{ recipe_id }}/steplist/{{ page_obj.previous_page_number }}">
@@ -41,6 +44,11 @@
                 {{page_number}}
             </a>
         {% endfor %}
+
+    </div>
+
+    <div>
+        {{ ingredients }}
 
     </div>
 
