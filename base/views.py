@@ -79,7 +79,7 @@ def listingStepRecipe(request, recipe_pk, step_pk):
     # ingredients = StepRecipe.objects.all().
     paginator = Paginator(stepsRecipe, per_page=1)
     page_object = paginator.get_page(step_pk)
-    context = {"page_obj": page_object, "recipe_id": recipe_pk, 'ingredients':ingredients}
+    context = {"page_obj": page_object, "recipe_id": recipe_pk }
     return render(request, "base/steplist.html", context)
 
 
