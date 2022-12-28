@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    {% for ingredient in page_obj %}
+        <pre>Name:{{ingredient.name}}</pre>
+        <pre>Descpription:{{ingredient.description}}</pre>
+
+    {% endfor %}
+    <div>
+        {% for ingredient in ingredients %}
+            <div>Name:{{ingredient.name}}</div>
+            <div>Descpription{{ingredient.description}}</div>
+        {% endfor %}
+            <div>{{ingredients.description}}</div>
+    </div>
+    <div>All:{{ingredients}}</div>
+
+{% endblock %}

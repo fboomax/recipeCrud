@@ -17,4 +17,5 @@ urlpatterns = [
     path('recipe/<str:recipe_pk>/update-step/<int:step_num>/', views.updateStep, name='update-step'),
     path('recipe/<str:recipe_pk>/create-step/', views.createStep, name='create-step'),
     path('recipe/<str:recipe_pk>/delete-step/<int:step_num>/', views.deleteStep, name='delete-step'),
+    path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients', views.listingIngrdient, name='ingredient-list'),
 ]

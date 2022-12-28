@@ -46,9 +46,17 @@
         {% endfor %}
 
     </div>
-
     <div>
-        {{ ingredients }}
+        <a href="/recipe/{{ recipe_id }}/steplist/{{ page_obj.number }}/ingredients">Ingredients</a>
+    </div>
+    <div>
+        {% for ingredient in ingredients %}
+            <div>{{ingredient.name}}</div>
+            <div>{{ingredient.description}}</div>
+
+
+
+        {% endfor %}
 
     </div>
 

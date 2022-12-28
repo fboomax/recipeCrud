@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
 from .models import Recipe, StepRecipe, Ingredient
 from .forms import RecipeForm, StepRecipeForm, IngredientForm
@@ -74,13 +75,36 @@ def deleteRecipe(request, pk):
 
 def listingStepRecipe(request, recipe_pk, step_pk):
     recipe = Recipe.objects.get(id=int(recipe_pk))
-    stepsRecipe = recipe.steprecipe_set.all()
     stepsRecipe = recipe.steprecipe_set.order_by('step')
-    # ingredients = StepRecipe.objects.all().
     paginator = Paginator(stepsRecipe, per_page=1)
     page_object = paginator.get_page(step_pk)
+
     context = {"page_obj": page_object, "recipe_id": recipe_pk }
     return render(request, "base/steplist.html", context)
+
+# def listingIngrdient(request, recipe_pk, step_num):
+#     recipe = Recipe.objects.get(id=int(recipe_pk))
+#     stepsRecipe = recipe.steprecipe_set.order_by('step')
+#     ingredients = stepsRecipe.ingredient_set.order_by('ingredient__name')
+#     print(ingredients)
+#     paginator = Paginator(ingredients, per_page=1)
+#     page_object = paginator.get_page(step_num)
+#
+#     context = {"page_obj": page_object, "recipe_id": recipe_pk ,'ingredients':ingredients}
+#     return render(request, "base/ingredientlist.html", context)
+
+def listingIngrdient(request, recipe_pk, step_num):
+    recipe = Recipe.objects.get(id=int(recipe_pk))
+    stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
+
+
+    ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
+    # paginator = Paginator(ingredients, per_page=1)
+    # page_object = paginator.get_page(step_num)
+
+    # context = {'page_object':page_object,'ingredients':ingredients}
+    context = {'ingredients':ingredients}
+    return render(request, "base/ingredientlist.html", context)
 
 
 def updateStep(request, recipe_pk, step_num):
