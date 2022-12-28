@@ -104,7 +104,27 @@ def listingIngrdient(request, recipe_pk, step_num):
     context = {'ingredients':ingredients, 'recipe_pk': int(recipe_pk), 'step_num':int(step_num)}
     return render(request, "base/ingredientlist.html", context)
 
-def updateIngrdient(request, recipe_pk, step_num):
+def createIngredient(request, recipe_pk, step_num):
+    form = IngredientForm()
+    if request.method == 'POST':
+        form = IngredientForm(request.POST, request.FILES)
+        if form.is_valid():
+            print(form)
+            sr = form.cleaned_data.get("stepRecipe")
+            nm = form.cleaned_data.get("name")
+            ds = form.cleaned_data.get("description")
+            obj = Ingredient.objects.create(
+                stepRecipe=sr,
+                name=nm,
+                description=ds,
+            )
+            print(obj)
+            obj.save()
+            return redirect('recipes')
+    context = {'form': form}
+    return render(request, 'base/ingredient_form.html', context)
+
+def updateIngredient(request, recipe_pk, step_num):
     recipe = Recipe.objects.get(id=int(recipe_pk))
     stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
     ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
@@ -117,7 +137,7 @@ def updateIngrdient(request, recipe_pk, step_num):
     context = {'form': form}
     return render(request, 'base/ingredient_form.html', context)
 
-def deleteIngrdient(request,recipe_pk, step_num ):
+def deleteIngredient(request,recipe_pk, step_num ):
     recipe = Recipe.objects.get(id=int(recipe_pk))
     stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
     ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
@@ -154,7 +174,7 @@ def updateStep(request, recipe_pk, step_num):
     return render(request, "base/step_form.html", context)
 
 def createStep(request, recipe_pk,):
-    form= StepRecipeForm()
+    form = StepRecipeForm()
     if request.method == 'POST':
         form = StepRecipeForm(request.POST, request.FILES)
         if form.is_valid():

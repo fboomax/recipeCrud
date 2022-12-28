@@ -18,8 +18,10 @@ urlpatterns = [
     path('recipe/<str:recipe_pk>/create-step/', views.createStep, name='create-step'),
     path('recipe/<str:recipe_pk>/delete-step/<int:step_num>/', views.deleteStep, name='delete-step'),
     path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients', views.listingIngrdient, name='ingredient-list'),
-    path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients/update-iningredients/', views.updateIngrdient,
+    path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients/update-iningredients/', views.updateIngredient,
          name='update-ingredient'),
-    path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients/delete-iningredients/', views.deleteIngrdient,
+    path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients/delete-iningredients/', views.deleteIngredient,
          name='delete-ingredient'),
+    path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients/create-iningredients/', views.createIngredient,
+         name='create-ingredient'),
 ]
