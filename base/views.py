@@ -96,15 +96,46 @@ def listingStepRecipe(request, recipe_pk, step_pk):
 def listingIngrdient(request, recipe_pk, step_num):
     recipe = Recipe.objects.get(id=int(recipe_pk))
     stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-
-
     ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
     # paginator = Paginator(ingredients, per_page=1)
     # page_object = paginator.get_page(step_num)
 
     # context = {'page_object':page_object,'ingredients':ingredients}
-    context = {'ingredients':ingredients}
+    context = {'ingredients':ingredients, 'recipe_pk': int(recipe_pk), 'step_num':int(step_num)}
     return render(request, "base/ingredientlist.html", context)
+
+def updateIngrdient(request, recipe_pk, step_num):
+    recipe = Recipe.objects.get(id=int(recipe_pk))
+    stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
+    ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
+    form = IngredientForm(instance=ingredients)
+    if request.method == "POST":
+        form = IngredientForm(request.POST, instance=ingredients)
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+    context = {'form': form}
+    return render(request, 'base/ingredient_form.html', context)
+
+def deleteIngrdient(request,recipe_pk, step_num ):
+    recipe = Recipe.objects.get(id=int(recipe_pk))
+    stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
+    ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
+    if request.method == "POST":
+        ingredients.delete()
+        return redirect('recipes')
+    context = {'ingredients': ingredients}
+    return render(request, "base/delete_ingredient.html", context)
+    #
+    # if request.method == 'POST':
+    #     stepsRecipe.delete()
+    #     recipe = Recipe.objects.get(id=int(recipe_pk))
+    #     stepsRecipe = recipe.steprecipe_set.all()
+    #     paginator = Paginator(stepsRecipe, per_page=1)
+    #     page_object = paginator.get_page(step_num)
+    #     context = {"page_obj": page_object, "recipe_id": recipe_pk}
+    #     return render(request, "base/steplist.html", context)
+    # return render(request, 'base/delete_step.html', {'obj': stepsRecipe})
 
 
 def updateStep(request, recipe_pk, step_num):

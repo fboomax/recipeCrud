@@ -1,18 +1,29 @@
 {% extends 'main.html' %}
-{% block content %}
+    {% block content %}
 
-    {% for ingredient in page_obj %}
-        <pre>Name:{{ingredient.name}}</pre>
-        <pre>Descpription:{{ingredient.description}}</pre>
+        {% for ingredient in page_obj %}
+            <pre>Name:{{ingredient.name}}</pre>
+            <pre>Descpription:{{ingredient.description}}</pre>
 
-    {% endfor %}
-    <div>
-        {% for ingredient in ingredients %}
-            <div>Name:{{ingredient.name}}</div>
-            <div>Descpription{{ingredient.description}}</div>
         {% endfor %}
-            <div>{{ingredients.description}}</div>
-    </div>
-    <div>All:{{ingredients}}</div>
+        <div>
+            {% for ingredient in ingredients %}
+                <div>Name: {{ingredient.name}}</div>
+                <div>Descpription: {{ingredient.description}}</div>
+            {% endfor %}
 
-{% endblock %}
+        </div>
+        <div>All:{{ingredients}}</div>
+        <div>recipe_pk:{{recipe_pk}}</div>
+        <div>step_num:{{step_num}}</div>
+
+
+        <div>
+            <a href="/recipe/{{ recipe_pk }}/steplist/{{ step_num }}/ingredients/update-iningredients/">Edit</a>
+        </div>
+        <div>
+            <a href="/recipe/{{ recipe_pk }}/steplist/{{ step_num }}/ingredients/delete-iningredients/">Delete</a>
+        </div>
+
+
+    {% endblock %}
