@@ -79,7 +79,7 @@ def listingStepRecipe(request, recipe_pk, step_pk):
     paginator = Paginator(stepsRecipe, per_page=1)
     page_object = paginator.get_page(step_pk)
 
-    context = {"page_obj": page_object, "recipe_id": recipe_pk }
+    context = {"page_obj": page_object, "recipe_id": recipe_pk, "step_pk": step_pk}
     return render(request, "base/steplist.html", context)
 
 # def listingIngrdient(request, recipe_pk, step_num):
@@ -111,10 +111,12 @@ def createIngredient(request, recipe_pk, step_num):
         if form.is_valid():
             print(form)
             sr = form.cleaned_data.get("stepRecipe")
+            ni = form.cleaned_data.get("numIngredient")
             nm = form.cleaned_data.get("name")
             ds = form.cleaned_data.get("description")
             obj = Ingredient.objects.create(
                 stepRecipe=sr,
+                numIngredient=ni,
                 name=nm,
                 description=ds,
             )
@@ -128,7 +130,8 @@ def updateIngredient(request, recipe_pk, step_num):
     recipe = Recipe.objects.get(id=int(recipe_pk))
     stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
     ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-    form = IngredientForm(instance=ingredients)
+    print(type(ingredients.first()))
+    form = IngredientForm(instance=ingredients.first())
     if request.method == "POST":
         form = IngredientForm(request.POST, instance=ingredients)
         if form.is_valid():
@@ -161,6 +164,7 @@ def deleteIngredient(request,recipe_pk, step_num ):
 def updateStep(request, recipe_pk, step_num):
     recipe = Recipe.objects.get(id=int(recipe_pk))
     stepsRecipe = recipe.steprecipe_set.get(step=int(step_num))
+    print(type(stepsRecipe))
     # stepsRecipe = recipe.steprecipe_set.all()
     form = StepRecipeForm(instance=stepsRecipe)
     if request.method == "POST":

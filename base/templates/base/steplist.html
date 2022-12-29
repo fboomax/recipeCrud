@@ -19,6 +19,9 @@
         <pre>{{step.title}}</pre>
         <pre>{{step.description}}</pre>
         <pre>{{step.duration}}</pre>
+        <div>
+            <a href="/recipe/{{ recipe_id }}/steplist/{{ step.step }}/ingredients">Ingredients</a>
+        </div>
 {#        <img src={{ step.image.url }} width="250" height="250">#}
 
     {% endfor %}
@@ -47,7 +50,7 @@
 
     </div>
     <div>
-        <a href="/recipe/{{ recipe_id }}/steplist/{{ page_obj.number }}/ingredients">Ingredients</a>
+        <a href="/recipe/{{ recipe_id }}/steplist/{{ step_pk }}/ingredients">Ingredients</a>
     </div>
     <div>
         {% for ingredient in ingredients %}
