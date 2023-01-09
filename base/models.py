@@ -43,18 +43,19 @@ class StepRecipe(models.Model):
     description = models.TextField()
     # ingredient
     duration = models.FloatField(validators=[MinValueValidator(0.0)])
-    image = models.ImageField(upload_to='media')
+    image = models.ImageField(upload_to='media', null=True, blank=True)
     # progressBar
 
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.recipe} : {self.title}'
+        return f'Recipe.Id:{self.recipe.id} Step.Id{self.id} - {self.recipe} :Step_num:{self.step} {self.title}'
 
 
 class Ingredient(models.Model):
     stepRecipe = models.ForeignKey(StepRecipe, on_delete=models.CASCADE)
+    numIngredient = models.PositiveIntegerField(unique=True, null=True)
     name = models.CharField(max_length=80)
     description = models.TextField()
 

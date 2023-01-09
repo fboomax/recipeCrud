@@ -3,6 +3,9 @@
      <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
     <h1>{{ selectedRecipe.name }}</h1>
     <div>
+                <a href="/recipe/{{ selectedRecipe.id }}/create-step/">Create Step</a>
+    </div>
+    <div>
         <h5>
             {{ selectedRecipe.id }} -- <a href="/recipe/{{ selectedRecipe.id }}">{{ selectedRecipe.name }}</a>
         </h5>
@@ -18,6 +21,13 @@
             <img src={{ selectedRecipe.image.url }} width="250" height="250">
             <h3>Updated: {{ selectedRecipe.updated }}</h3>
             <h3>Created: {{ selectedRecipe.created }}</h3>
+        </div>
+        <div>
+            <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
+        </div>
+        <div>
+{#             <a href="/recipe/{{ selectedRecipe.id }}/steps-recipe/">Go Step Recipe</a>#}
+             <a href="/recipe/{{ selectedRecipe.id }}/steplist/{{ 1 }}">Go Step Recipe</a>
         </div>
         <div>
             <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>

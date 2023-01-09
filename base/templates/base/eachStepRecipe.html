@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+    {% block content %}
+        <div>
+            <di>
+                <h1>{{ recipe.name }}</h1>
+            </di>
+            <div>
+                     <h3>----------------------</h3>
+                    <h3>{{ eachStepRecipe.recipe }}</h3>
+                    <h3>{{ eachStepRecipe.step }}</h3>
+                    <h3>{{ eachStepRecipe.title }}</h3>
+                    <h3>{{ eachStepRecipe.description }}</h3>
+                    <h3>{{ eachStepRecipe.duration }}</h3>
+                    <h3>{{ eachStepRecipe.image }}</h3>
+            </div>
+            <div>
+                 <a href="/recipe/{{ recipe.id }}/steps-recipe/{{ next_page }}/">Go Step Recipe</a>
+                <a href="">Edit</a>
+                <a href="">Delete</a>
+            </div>
+        </div>
+    {% endblock %}
