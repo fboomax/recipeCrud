@@ -3,28 +3,38 @@ from django.shortcuts import render, redirect
 from .models import Recipe, StepRecipe, Ingredient
 from .forms import RecipeForm, StepRecipeForm, IngredientForm
 from django.core.paginator import Paginator
+from django.views import View
 from django.forms import modelformset_factory
 
 
-def home(request):
-    return render(request, 'base/home.html')
+#The first page of the app
+class HomeView(View):
+    def get(self, request):
+        return render(request, 'base/home.html')
+# def home(request):
+#     return render(request, 'base/home.html')
+
+# View list of all recipes
+class RecipeView(View):
+    def get(self, request):
+        allRecipes = Recipe.objects.all()
+        context = {'allRecipes': allRecipes}
+        return render(request, 'base/recipes.html', context)
+
+# def recipes(request):
+#     allRecipes = Recipe.objects.all()
+#     context = {'allRecipes': allRecipes}
+#     return render(request, 'base/recipes.html', context)
 
 
-def recipes(request):
-    allRecipes = Recipe.objects.all()
-    context = {'allRecipes': allRecipes}
-    return render(request, 'base/recipes.html', context)
+# Create a Recipe
+class CreateRecipeView(View):
+    def get(self, request):
+        form = RecipeForm()
+        context = {'form': form}
+        return render(request, 'base/recipe_form.html', context)
 
-
-def recipe(request, pk):
-    selectedRecipe = Recipe.objects.get(id=pk)
-    context = {'selectedRecipe': selectedRecipe}
-    return render(request, 'base/recipe.html', context)
-
-
-def createRecipe(request):
-    form = RecipeForm()
-    if request.method == 'POST':
+    def post(self, request):
         form = RecipeForm(request.POST, request.FILES)
         print(form.is_valid())
         if form.is_valid():
@@ -46,12 +56,39 @@ def createRecipe(request):
             print(obj)
             obj.save()
             return redirect('recipes')
-        # else:
-        #     form = {}
-        #     return redirect('recipes')
-    context = {'form': form}
-    return render(request, 'base/recipe_form.html', context)
 
+# def createRecipe(request):
+#     form = RecipeForm()
+#     if request.method == 'POST':
+#         form = RecipeForm(request.POST, request.FILES)
+#         print(form.is_valid())
+#         if form.is_valid():
+#             print(form)
+#             nm = form.cleaned_data.get("name")
+#             cat = form.cleaned_data.get("category")
+#             dif = form.cleaned_data.get("difficulty")
+#             st = form.cleaned_data.get("steps")
+#             dur = form.cleaned_data.get("duration")
+#             img = form.cleaned_data.get("image")
+#             obj = Recipe.objects.create(
+#                 name=nm,
+#                 category=cat,
+#                 difficulty=dif,
+#                 duration=dur,
+#                 steps=st,
+#                 image=img
+#             )
+#             print(obj)
+#             obj.save()
+#             return redirect('recipes')
+#     context = {'form': form}
+#     return render(request, 'base/recipe_form.html', context)
+
+
+def recipe(request, pk):
+    selectedRecipe = Recipe.objects.get(id=pk)
+    context = {'selectedRecipe': selectedRecipe}
+    return render(request, 'base/recipe.html', context)
 
 def updateRecipe(request, pk):
     recipe = Recipe.objects.get(id=pk)
