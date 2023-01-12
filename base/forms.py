@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import  forms
 from .models import Recipe, StepRecipe, Ingredient
 
 
@@ -17,4 +18,16 @@ class StepRecipeForm(ModelForm):
 class IngredientForm(ModelForm):
     class Meta:
         model = Ingredient
-        fields = '__all__'
+        fields = ('stepRecipe', 'numIngredient', 'name', 'description')
+
+        widgets = {
+            'stepRecipe': forms.TextInput(attrs={'class': 'form-control'}),
+            'numIngredient': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+# class IngredientForm(ModelForm):
+#     class Meta:
+#         model = Ingredient
+#         fields = '__all__'

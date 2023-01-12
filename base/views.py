@@ -4,6 +4,7 @@ from .models import Recipe, StepRecipe, Ingredient
 from .forms import RecipeForm, StepRecipeForm, IngredientForm
 from django.core.paginator import Paginator
 from django.views import View
+from django.views.generic import DetailView, FormView
 from django.forms import modelformset_factory
 
 
@@ -228,38 +229,44 @@ def createIngredient(request, recipe_pk, step_num):
     context = {'form': form}
     return render(request, 'base/ingredient_form.html', context)
 
-# class UpdateIngredinet(View):
-#     def get(self, request, recipe_pk, step_num):
-#         recipe = Recipe.objects.get(id=int(recipe_pk))
-#         stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-#         ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-#         form = IngredientForm(instance=ingredients.first())
-#         context = {'form': form}
-#         return render(request, 'base/ingredient_form.html', context)
-#
-#     def post(self, request, recipe_pk, step_num):
-#         recipe = Recipe.objects.get(id=int(recipe_pk))
-#         stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-#         ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-#         # form = IngredientForm(instance=ingredients.first())
+class UpdateIngredinet(FormView, View):
+    template_name = 'base/ingredient_form.html'
+    form_class = IngredientForm
+    success_url = '/recipes/'
+
+    def get(self, request, recipe_pk, step_num):
+        recipe = Recipe.objects.get(id=int(recipe_pk))
+        stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
+        ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
+        form = IngredientForm(instance=ingredients.first())
+        context = {'form': form}
+        return render(request, 'base/ingredient_form.html', context)
+
+
+    def post(self, request, recipe_pk, step_num):
+        recipe = Recipe.objects.get(id=int(recipe_pk))
+        stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
+        ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
+        form = IngredientForm(request.POST, instance=ingredients.first())
+        if form.is_valid():
+            form.save()
+            return redirect('recipes')
+
+
+
+# def updateIngredient(request, recipe_pk, step_num):
+#     recipe = Recipe.objects.get(id=int(recipe_pk))
+#     stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
+#     ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
+#     # print(type(ingredients.first()))
+#     form = IngredientForm(instance=ingredients.first())
+#     if request.method == "POST":
 #         form = IngredientForm(request.POST, instance=ingredients)
 #         if form.is_valid():
 #             form.save()
 #             return redirect('recipes')
-
-def updateIngredient(request, recipe_pk, step_num):
-    recipe = Recipe.objects.get(id=int(recipe_pk))
-    stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-    ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-    # print(type(ingredients.first()))
-    form = IngredientForm(instance=ingredients.first())
-    if request.method == "POST":
-        form = IngredientForm(request.POST, instance=ingredients)
-        if form.is_valid():
-            form.save()
-            return redirect('recipes')
-    context = {'form': form}
-    return render(request, 'base/ingredient_form.html', context)
+#     context = {'form': form}
+#     return render(request, 'base/ingredient_form.html', context)
 
 def deleteIngredient(request,recipe_pk, step_num ):
     recipe = Recipe.objects.get(id=int(recipe_pk))
