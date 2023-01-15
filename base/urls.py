@@ -22,6 +22,6 @@ urlpatterns = [
          name='update-ingredient'),
     path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients/delete-iningredients/', views.deleteIngredient,
          name='delete-ingredient'),
-    path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients/create-iningredients/', views.createIngredient,
+    path('recipe/<str:recipe_pk>/steplist/<int:step_num>/ingredients/create-iningredients/', views.CreateIngredient.as_view(),
          name='create-ingredient'),
 ]

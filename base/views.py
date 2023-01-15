@@ -8,12 +8,11 @@ from django.views.generic import DetailView, FormView
 from django.forms import modelformset_factory
 
 
-#The first page of the app
+# The first page of the app
 class HomeView(View):
     def get(self, request):
         return render(request, 'base/home.html')
-# def home(request):
-#     return render(request, 'base/home.html')
+
 
 # View list of all recipes
 class RecipeListView(View):
@@ -21,11 +20,6 @@ class RecipeListView(View):
         allRecipes = Recipe.objects.all()
         context = {'allRecipes': allRecipes}
         return render(request, 'base/recipes.html', context)
-
-# def recipes(request):
-#     allRecipes = Recipe.objects.all()
-#     context = {'allRecipes': allRecipes}
-#     return render(request, 'base/recipes.html', context)
 
 
 # Create a Recipe
@@ -57,6 +51,7 @@ class CreateRecipeView(View):
             print(obj)
             obj.save()
             return redirect('recipes')
+
 
 # def createRecipe(request):
 #     form = RecipeForm()
@@ -92,10 +87,6 @@ class RecipeView(View):
         context = {'selectedRecipe': selectedRecipe}
         return render(request, 'base/recipe.html', context)
 
-# def recipe(request, pk):
-#     selectedRecipe = Recipe.objects.get(id=pk)
-#     context = {'selectedRecipe': selectedRecipe}
-#     return render(request, 'base/recipe.html', context)
 
 class UpdateRecipeView(View):
     def get(self, request, pk):
@@ -111,17 +102,6 @@ class UpdateRecipeView(View):
             form.save()
             return redirect('recipes')
 
-# def updateRecipe(request, pk):
-#     recipe = Recipe.objects.get(id=pk)
-#     form = RecipeForm(instance=recipe)
-#     if request.method == "POST":
-#         form = RecipeForm(request.POST, instance=recipe)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('recipes')
-#     context = {'form': form}
-#     return render(request, 'base/recipe_form.html', context)
-
 
 class DeleteRecipeView(View):
     def get(self, request, pk):
@@ -132,13 +112,6 @@ class DeleteRecipeView(View):
         recipe = Recipe.objects.get(id=pk)
         recipe.delete()
         return redirect('recipes')
-
-# def deleteRecipe(request, pk):
-#     recipe = Recipe.objects.get(id=pk)
-#     if request.method == 'POST':
-#         recipe.delete()
-#         return redirect('recipes')
-#     return render(request, 'base/delete.html', {'obj': recipe})
 
 
 class StepRecipeListView(View):
@@ -152,24 +125,16 @@ class StepRecipeListView(View):
         context = {"page_obj": page_object, "recipe_id": recipe_pk, "step_pk": step_pk}
         return render(request, "base/steplist.html", context)
 
-# def listingStepRecipe(request, recipe_pk, step_pk):
-#     recipe = Recipe.objects.get(id=int(recipe_pk))
-#     stepsRecipe = recipe.steprecipe_set.order_by('step')
-#     paginator = Paginator(stepsRecipe, per_page=1)
-#     page_object = paginator.get_page(step_pk)
-#
-#     context = {"page_obj": page_object, "recipe_id": recipe_pk, "step_pk": step_pk}
-#     return render(request, "base/steplist.html", context)
-
 
 class IngredientListView(View):
 
     def get(self, request, recipe_pk, step_num):
         recipe = Recipe.objects.get(id=int(recipe_pk))
         stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-        ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
+        ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step).all()
         context = {'ingredients': ingredients, 'recipe_pk': int(recipe_pk), 'step_num': int(step_num)}
         return render(request, "base/ingredientlist.html", context)
+
 
 # def listingIngrdient(request, recipe_pk, step_num):
 #     recipe = Recipe.objects.get(id=int(recipe_pk))
@@ -183,51 +148,24 @@ class IngredientListView(View):
 #     return render(request, "base/ingredientlist.html", context)
 
 
-# class CreateIngredient(View):
-#     def post(self, request, recipe_pk, step_num):
-#         form = IngredientForm()
-#         context = {'form': form}
-#         return render(request, 'base/ingredient_form.html', context)
-#
-#     def get(self, request, recipe_pk, step_num):
-#         form = IngredientForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             print(form)
-#             sr = form.cleaned_data.get("stepRecipe")
-#             ni = form.cleaned_data.get("numIngredient")
-#             nm = form.cleaned_data.get("name")
-#             ds = form.cleaned_data.get("description")
-#             obj = Ingredient.objects.create(
-#                 stepRecipe=sr,
-#                 numIngredient=ni,
-#                 name=nm,
-#                 description=ds,
-#             )
-#             print(obj)
-#             obj.save()
-#             return redirect('recipes')
-#
-def createIngredient(request, recipe_pk, step_num):
-    form = IngredientForm()
-    if request.method == 'POST':
+class CreateIngredient(View):
+    def get(self, request, recipe_pk, step_num):
+        form = IngredientForm()
+        context = {'form': form}
+        return render(request, 'base/ingredient_form.html', context)
+
+    def post(self, request, recipe_pk, step_num):
         form = IngredientForm(request.POST, request.FILES)
         if form.is_valid():
-            print(form)
-            sr = form.cleaned_data.get("stepRecipe")
-            ni = form.cleaned_data.get("numIngredient")
-            nm = form.cleaned_data.get("name")
-            ds = form.cleaned_data.get("description")
-            obj = Ingredient.objects.create(
-                stepRecipe=sr,
-                numIngredient=ni,
-                name=nm,
-                description=ds,
-            )
-            print(obj)
+            data = form.cleaned_data
+            data['stepRecipe'] = StepRecipe.objects.get(step=step_num,recipe=recipe_pk)
+            obj = Ingredient.objects.create(**data)
             obj.save()
             return redirect('recipes')
-    context = {'form': form}
-    return render(request, 'base/ingredient_form.html', context)
+        else:
+            context = {'form': form}
+            return render(request, 'base/ingredient_form.html', context)
+
 
 class UpdateIngredinet(FormView, View):
     template_name = 'base/ingredient_form.html'
@@ -242,7 +180,6 @@ class UpdateIngredinet(FormView, View):
         context = {'form': form}
         return render(request, 'base/ingredient_form.html', context)
 
-
     def post(self, request, recipe_pk, step_num):
         recipe = Recipe.objects.get(id=int(recipe_pk))
         stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
@@ -251,7 +188,6 @@ class UpdateIngredinet(FormView, View):
         if form.is_valid():
             form.save()
             return redirect('recipes')
-
 
 
 # def updateIngredient(request, recipe_pk, step_num):
@@ -268,7 +204,8 @@ class UpdateIngredinet(FormView, View):
 #     context = {'form': form}
 #     return render(request, 'base/ingredient_form.html', context)
 
-def deleteIngredient(request,recipe_pk, step_num ):
+
+def deleteIngredient(request, recipe_pk, step_num):
     recipe = Recipe.objects.get(id=int(recipe_pk))
     stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
     ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
@@ -295,7 +232,8 @@ def updateStep(request, recipe_pk, step_num):
     context = {'form': form}
     return render(request, "base/step_form.html", context)
 
-def createStep(request, recipe_pk,):
+
+def createStep(request, recipe_pk, ):
     form = StepRecipeForm()
     if request.method == 'POST':
         form = StepRecipeForm(request.POST, request.FILES)
@@ -321,6 +259,7 @@ def createStep(request, recipe_pk,):
     context = {'form': form}
     return render(request, 'base/step_form.html', context)
 
+
 def deleteStep(request, recipe_pk, step_num):
     recipe = Recipe.objects.get(id=int(recipe_pk))
     stepsRecipe = recipe.steprecipe_set.get(step=int(step_num))
@@ -333,13 +272,6 @@ def deleteStep(request, recipe_pk, step_num):
         context = {"page_obj": page_object, "recipe_id": recipe_pk}
         return render(request, "base/steplist.html", context)
     return render(request, 'base/delete_step.html', {'obj': stepsRecipe})
-
-
-
-
-
-
-
 
 # def deleteRecipe(request, pk):
 #     recipe = Recipe.objects.get(id=pk)

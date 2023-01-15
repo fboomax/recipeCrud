@@ -55,7 +55,7 @@ class StepRecipe(models.Model):
 
 class Ingredient(models.Model):
     stepRecipe = models.ForeignKey(StepRecipe, on_delete=models.CASCADE)
-    numIngredient = models.PositiveIntegerField(unique=True, null=True)
+    # numIngredient = models.PositiveIntegerField(null=True)
     name = models.CharField(max_length=80)
     description = models.TextField()
 
