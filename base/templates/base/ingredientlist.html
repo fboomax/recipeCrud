@@ -10,6 +10,10 @@
             {% for ingredient in ingredients %}
                 <div>Name: {{ingredient.name}}</div>
                 <div>Descpription: {{ingredient.description}}</div>
+                <div>
+                    <a href="/recipe/{{ recipe_pk }}/steplist/{{ step_num }}/ingredients/{{ ingredient.id }}/update/">Edit</a>
+                    <a href="/recipe/{{ recipe_pk }}/steplist/{{ step_num }}/ingredients/{{ ingredient.id }}/delete/">Delete</a>
+                </div>
                 <br>
             {% endfor %}
 
@@ -19,11 +23,9 @@
             <a href="/recipe/{{ recipe_pk }}/steplist/{{ step_num }}/ingredients/create-iningredients/">Create Ingredient</a>
         </div>
         <div>
-            <a href="/recipe/{{ recipe_pk }}/steplist/{{ step_num }}/ingredients/update-iningredients/">Edit</a>
+            <a href="/recipe/{{ recipe_pk }}/steplist/{{ step_num }}/">Back to Step</a>
         </div>
-        <div>
-            <a href="/recipe/{{ recipe_pk }}/steplist/{{ step_num }}/ingredients/delete-iningredients/">Delete</a>
-        </div>
+
 
 
     {% endblock %}

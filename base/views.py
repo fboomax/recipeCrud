@@ -1,9 +1,10 @@
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe, StepRecipe, Ingredient
 from .forms import RecipeForm, StepRecipeForm, IngredientForm
 from django.core.paginator import Paginator
 from django.views import View
+from django.urls import reverse
 from django.views.generic import DetailView, FormView
 from django.forms import modelformset_factory
 
@@ -33,53 +34,14 @@ class CreateRecipeView(View):
         form = RecipeForm(request.POST, request.FILES)
         print(form.is_valid())
         if form.is_valid():
-            print(form)
-            nm = form.cleaned_data.get("name")
-            cat = form.cleaned_data.get("category")
-            dif = form.cleaned_data.get("difficulty")
-            st = form.cleaned_data.get("steps")
-            dur = form.cleaned_data.get("duration")
-            img = form.cleaned_data.get("image")
-            obj = Recipe.objects.create(
-                name=nm,
-                category=cat,
-                difficulty=dif,
-                duration=dur,
-                steps=st,
-                image=img
-            )
+            data=form.cleaned_data
+            obj = Recipe.objects.create(**data)
             print(obj)
             obj.save()
             return redirect('recipes')
-
-
-# def createRecipe(request):
-#     form = RecipeForm()
-#     if request.method == 'POST':
-#         form = RecipeForm(request.POST, request.FILES)
-#         print(form.is_valid())
-#         if form.is_valid():
-#             print(form)
-#             nm = form.cleaned_data.get("name")
-#             cat = form.cleaned_data.get("category")
-#             dif = form.cleaned_data.get("difficulty")
-#             st = form.cleaned_data.get("steps")
-#             dur = form.cleaned_data.get("duration")
-#             img = form.cleaned_data.get("image")
-#             obj = Recipe.objects.create(
-#                 name=nm,
-#                 category=cat,
-#                 difficulty=dif,
-#                 duration=dur,
-#                 steps=st,
-#                 image=img
-#             )
-#             print(obj)
-#             obj.save()
-#             return redirect('recipes')
-#     context = {'form': form}
-#     return render(request, 'base/recipe_form.html', context)
-
+        else:
+            context = {'form': form}
+            return render(request, 'base/recipe_form.html', context)
 
 class RecipeView(View):
     def get(self, request, pk):
@@ -136,18 +98,6 @@ class IngredientListView(View):
         return render(request, "base/ingredientlist.html", context)
 
 
-# def listingIngrdient(request, recipe_pk, step_num):
-#     recipe = Recipe.objects.get(id=int(recipe_pk))
-#     stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-#     ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-#     # paginator = Paginator(ingredients, per_page=1)
-#     # page_object = paginator.get_page(step_num)
-#
-#     # context = {'page_object':page_object,'ingredients':ingredients}
-#     context = {'ingredients':ingredients, 'recipe_pk': int(recipe_pk), 'step_num':int(step_num)}
-#     return render(request, "base/ingredientlist.html", context)
-
-
 class CreateIngredient(View):
     def get(self, request, recipe_pk, step_num):
         form = IngredientForm()
@@ -161,59 +111,39 @@ class CreateIngredient(View):
             data['stepRecipe'] = StepRecipe.objects.get(step=step_num,recipe=recipe_pk)
             obj = Ingredient.objects.create(**data)
             obj.save()
-            return redirect('recipes')
+            return redirect(reverse('ingredient-list', kwargs={'recipe_pk':recipe_pk, 'step_num':step_num}))
         else:
             context = {'form': form}
             return render(request, 'base/ingredient_form.html', context)
 
 
-class UpdateIngredinet(FormView, View):
+class UpdateIngredient(FormView, View):
     template_name = 'base/ingredient_form.html'
     form_class = IngredientForm
     success_url = '/recipes/'
 
-    def get(self, request, recipe_pk, step_num):
-        recipe = Recipe.objects.get(id=int(recipe_pk))
-        stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-        ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-        form = IngredientForm(instance=ingredients.first())
+    def get(self, request, recipe_pk, step_num,ingredient_pk):
+        ingredient = Ingredient.objects.get(id=ingredient_pk)
+        form = IngredientForm(instance=ingredient)
         context = {'form': form}
         return render(request, 'base/ingredient_form.html', context)
 
-    def post(self, request, recipe_pk, step_num):
-        recipe = Recipe.objects.get(id=int(recipe_pk))
-        stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-        ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-        form = IngredientForm(request.POST, instance=ingredients.first())
+    def post(self, request, recipe_pk, step_num, ingredient_pk):
+        ingredient = Ingredient.objects.get(id=ingredient_pk)
+        form = IngredientForm(request.POST, instance=ingredient)
         if form.is_valid():
             form.save()
-            return redirect('recipes')
+            return redirect(reverse('ingredient-list', kwargs={'recipe_pk':recipe_pk, 'step_num':step_num}))
 
-
-# def updateIngredient(request, recipe_pk, step_num):
-#     recipe = Recipe.objects.get(id=int(recipe_pk))
-#     stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-#     ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-#     # print(type(ingredients.first()))
-#     form = IngredientForm(instance=ingredients.first())
-#     if request.method == "POST":
-#         form = IngredientForm(request.POST, instance=ingredients)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('recipes')
-#     context = {'form': form}
-#     return render(request, 'base/ingredient_form.html', context)
-
-
-def deleteIngredient(request, recipe_pk, step_num):
-    recipe = Recipe.objects.get(id=int(recipe_pk))
-    stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-    ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step)
-    if request.method == "POST":
-        ingredients.delete()
-        return redirect('recipes')
-    context = {'ingredients': ingredients}
-    return render(request, "base/delete_ingredient.html", context)
+class DeleteIngredient(View):
+    def get(self, request, recipe_pk, step_num, ingredient_pk):
+        ingredient = get_object_or_404(Ingredient, pk=ingredient_pk)
+        context = {'ingredient': ingredient}
+        return render(request, "base/delete_ingredient.html", context)
+    def post(self, request, recipe_pk, step_num, ingredient_pk):
+        ingredient = get_object_or_404(Ingredient, pk=ingredient_pk)
+        ingredient.delete()
+        return redirect(reverse('ingredient-list', kwargs={'recipe_pk':recipe_pk, 'step_num':step_num}))
 
 
 def updateStep(request, recipe_pk, step_num):
@@ -273,32 +203,3 @@ def deleteStep(request, recipe_pk, step_num):
         return render(request, "base/steplist.html", context)
     return render(request, 'base/delete_step.html', {'obj': stepsRecipe})
 
-# def deleteRecipe(request, pk):
-#     recipe = Recipe.objects.get(id=pk)
-#     if request.method == 'POST':
-#         recipe.delete()
-#         return redirect('recipes')
-#     return render(request, 'base/delete.html', {'obj': recipe})
-
-
-# def stepsRecipe(request, recipe_pk):
-#     # firstAppear = False
-#     recipe = Recipe.objects.get(id=recipe_pk)
-#     # stepsRecipe = recipe.steprecipe_set.all()
-#     stepsRecipe = recipe.steprecipe_set.first()
-#     next_page = stepsRecipe.id+1
-#     print(stepsRecipe)
-#     firstAppear = True
-#     # stepRecipes = StepRecipe.object.all()
-#     context = {'recipe': recipe, 'stepsRecipe': stepsRecipe, 'next_page': next_page}
-#     return render(request, 'base/stepsRecipe.html', context)
-
-
-# def eachStepRecipe(request, recipe_pk, step_pk):
-#     recipe = Recipe.objects.get(id=recipe_pk)
-#     # stepsRecipe = recipe.steprecipe_set.all()
-#     eachStepRecipe = recipe.steprecipe_set.get(id=step_pk)
-#     print(eachStepRecipe.id)
-#     next_page = eachStepRecipe.id + 1
-#     context = {'recipe': recipe, 'eachStepRecipe': eachStepRecipe, 'next_page':next_page}
-#     return render(request, 'base/eachStepRecipe.html', context)
