@@ -5,63 +5,46 @@
 {% endblock %}
 
 {% block content %}
-    <div>
-        <a href="/recipe/{{ recipe_id }}/update-step/{{ page_obj.number }}">Edit</a>
-    </div>
-    <div>
-        <a href="/recipe/{{ recipe_id }}/delete-step/{{ page_obj.number }}">Delete</a>
-    </div>
-{#    <div>#}
-{#        <a href="/recipe/{{ recipe_id }}/delete-step/{{ page_obj.number }}">Delete</a>#}
-{#    </div>#}
     {% for step in page_obj %}
+        <div>
+            <a href="/recipe/{{ recipe_id }}/update-step/{{ step.id }}">Edit</a>
+            <a href="/recipe/{{ recipe_id }}/delete-step/{{ step.id }}">Delete</a>
+        </div>
         <pre>{{step.step}}</pre>
         <pre>{{step.title}}</pre>
         <pre>{{step.description}}</pre>
         <pre>{{step.duration}}</pre>
         <div>
-            <a href="/recipe/{{ recipe_id }}/steplist/{{ step.step }}/ingredients">Ingredients</a>
+            <a href="/recipe/{{ recipe_id }}/steplist/{{ step.id }}/ingredients">Ingredients</a>
         </div>
+        <br>
 {#        <img src={{ step.image.url }} width="250" height="250">#}
 
     {% endfor %}
-    <div>
-        {% if page_obj.has_previous %}
-        <a href="/recipe/{{ recipe_id }}/steplist/{{ page_obj.previous_page_number }}">
-            Previous Page
-        </a>
-        {% endif%}
-        {% if page_obj.has_next %}
-            <a href="/recipe/{{ recipe_id }}/steplist/{{ page_obj.next_page_number }}">
-            Next Page
+        <div>
+            {% if page_obj.has_previous %}
+            <a href="/recipe/{{ recipe_id }}/steplist?page={{ page_obj.previous_page_number }}">
+                Previous Page
             </a>
-        {% endif%}
-    </div>
+                <br><br>
+            {% endif%}
+            {% for page_number in page_obj.paginator.page_range %}
+                <a
+                    href="/recipe/{{ recipe_id }}/steplist?page={{ page_number }}"
+                    class="{% if page_number == page_obj.number %}current{% endif %}"
+                >
+                    {{page_number}}
+                </a>
+            {% endfor %}
 
-    <div>
-        {% for page_number in page_obj.paginator.page_range %}
-            <a
-                href="/recipe/{{ recipe_id }}/steplist/{{ page_number }}/"
-                class="{% if page_number == page_obj.number %}current{% endif %}"
-            >
-                {{page_number}}
-            </a>
-        {% endfor %}
-
-    </div>
-    <div>
-        <a href="/recipe/{{ recipe_id }}/steplist/{{ step_pk }}/ingredients">Ingredients</a>
-    </div>
-    <div>
-        {% for ingredient in ingredients %}
-            <div>{{ingredient.name}}</div>
-            <div>{{ingredient.description}}</div>
-
-
-
-        {% endfor %}
-
-    </div>
+            {% if page_obj.has_next %}
+                <br><br>
+                <a href="/recipe/{{ recipe_id }}/steplist?page={{ page_obj.next_page_number }}">
+                Next Page
+                </a>
+            {% endif%}
+        </div>
+        <br>
         <div>
             <a href="/recipe/{{ recipe_id }}/">Back to Step</a>
         </div>

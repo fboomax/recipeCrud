@@ -14,6 +14,14 @@ class StepRecipeForm(ModelForm):
         model = StepRecipe
         fields = '__all__'
 
+        # widgets = {
+        #     # 'recipe': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'step': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'title': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'description': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'duration': forms.TextInput(attrs={'class': 'form-control'}),
+        #     # 'image': forms.ImageField(),
+        # }
 
 class IngredientForm(ModelForm):
     class Meta:
