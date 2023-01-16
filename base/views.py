@@ -1,21 +1,17 @@
-from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe, StepRecipe, Ingredient
 from .forms import RecipeForm, StepRecipeForm, IngredientForm
 from django.core.paginator import Paginator
 from django.views import View
 from django.urls import reverse
-from django.views.generic import DetailView, FormView
-from django.forms import modelformset_factory
+from django.views.generic import FormView
 
 
-# The first page of the app
 class HomeView(View):
     def get(self, request):
         return render(request, 'base/home.html')
 
 
-# View list of all recipes
 class RecipeListView(View):
     def get(self, request):
         allRecipes = Recipe.objects.all()
@@ -23,7 +19,6 @@ class RecipeListView(View):
         return render(request, 'base/recipes.html', context)
 
 
-# Create a Recipe
 class CreateRecipeView(View):
     def get(self, request):
         form = RecipeForm()
@@ -32,7 +27,6 @@ class CreateRecipeView(View):
 
     def post(self, request):
         form = RecipeForm(request.POST, request.FILES)
-        print(form.is_valid())
         if form.is_valid():
             data = form.cleaned_data
             obj = Recipe.objects.create(**data)
@@ -80,8 +74,7 @@ class DeleteRecipeView(View):
 class StepRecipeListView(View):
 
     def get(self, request, recipe_pk):
-
-        page = request.GET.get('page',1)
+        page = request.GET.get('page', 1)
         recipe = Recipe.objects.get(id=int(recipe_pk))
         stepsRecipe = recipe.steprecipe_set.order_by('step')
         paginator = Paginator(stepsRecipe, per_page=2)
@@ -99,6 +92,7 @@ class IngredientListView(View):
         ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step).all()
         context = {'ingredients': ingredients, 'recipe_pk': int(recipe_pk), 'step_num': int(step_num)}
         return render(request, "base/ingredientlist.html", context)
+
 
 
 class CreateIngredient(View):
@@ -152,10 +146,9 @@ class DeleteIngredient(View):
 
 
 class UpdateStep(View):
-
     def get(self, request, recipe_pk, step_pk):
         print(StepRecipe.objects.all())
-        stepRecipe = get_object_or_404(StepRecipe,pk=step_pk)
+        stepRecipe = get_object_or_404(StepRecipe, pk=step_pk)
 
         form = StepRecipeForm(instance=stepRecipe)
         context = {'form': form}
@@ -168,6 +161,7 @@ class UpdateStep(View):
             form.save()
             return redirect(reverse('step-list', kwargs={'recipe_pk': recipe_pk}))
 
+
 class CreateStep(View):
     def get(self, request, recipe_pk):
         form = StepRecipeForm()
@@ -178,11 +172,10 @@ class CreateStep(View):
         form = StepRecipeForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            # data['recipe'] = get_object_or_404(Recipe, recipe_pk)
-            # print(data)
             obj = StepRecipe.objects.create(**data)
             obj.save()
             return redirect(reverse('recipe', kwargs={'recipe_pk': recipe_pk}))
+
 
 class DeleteStep(View):
 

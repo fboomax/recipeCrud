@@ -14,19 +14,6 @@ class Recipe(models.Model):
     steps = models.PositiveIntegerField(null=True)
     duration = models.FloatField(validators=[MinValueValidator(0.0)])
     image = models.ImageField(upload_to='media')
-    # serialId = models.AutoField(primary_key=False)
-    # serialId = models.Se(
-    #     primary_key=False,
-    #     editable=False,
-    #     help_text=("Auto Increment Number"),
-    #     verbose_name=("Number"),
-    #     # null=True
-    # )
-    # serialId = models.UUIDField(
-    #     primary_key=False,
-    #     null=True,
-    #     editable=False)
-
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -45,7 +32,6 @@ class StepRecipe(models.Model):
     duration = models.FloatField(validators=[MinValueValidator(0.0)])
     image = models.ImageField(upload_to='media', null=True, blank=True)
     # progressBar
-
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -55,7 +41,6 @@ class StepRecipe(models.Model):
 
 class Ingredient(models.Model):
     stepRecipe = models.ForeignKey(StepRecipe, on_delete=models.CASCADE)
-    # numIngredient = models.PositiveIntegerField(null=True)
     name = models.CharField(max_length=80)
     description = models.TextField()
 

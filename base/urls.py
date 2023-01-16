@@ -9,10 +9,6 @@ urlpatterns = [
     path('create-recipe/', views.CreateRecipeView.as_view(), name='create-recipe'),
     path('update-recipe/<str:pk>', views.UpdateRecipeView.as_view(), name='update-recipe'),
     path('delete-recipe/<str:pk>', views.DeleteRecipeView.as_view(), name='delete-recipe'),
-
-    # path('recipe/<str:recipe_pk>/steps-recipe/', views.stepsRecipe, name='steps-recipe'),
-    # path('recipe/<str:recipe_pk>/steps-recipe/<str:step_pk>/', views.eachStepRecipe, name='step-recipe'),
-    # path('recipe/<str:recipe_pk>/steplist/', views.listingStepRecipe, name='steplist'),
     path('recipe/<str:recipe_pk>/steplist/', views.StepRecipeListView.as_view(), name='step-list'),
     path('recipe/<str:recipe_pk>/update-step/<int:step_pk>/', views.UpdateStep.as_view(), name='update-step'),
     path('recipe/<str:recipe_pk>/create-step/', views.CreateStep.as_view(), name='create-step'),
