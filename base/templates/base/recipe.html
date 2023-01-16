@@ -16,7 +16,7 @@
             <h3>Name: {{ selectedRecipe.name }}</h3>
             <h3>Category: {{ selectedRecipe.category }}</h3>
             <h3>Difficulty: {{ selectedRecipe.difficulty }}</h3>
-            <h3>Steps: {{ selectedRecipe.steps }}</h3>
+            <h3>Steps: {{ selectedRecipe.steprecipe_set.count }}</h3>
             <h3>Duration: {{ selectedRecipe.duration }}</h3>
             <img src={{ selectedRecipe.image.url }} width="250" height="250">
             <h3>Updated: {{ selectedRecipe.updated }}</h3>
@@ -27,7 +27,7 @@
         </div>
         <div>
 {#             <a href="/recipe/{{ selectedRecipe.id }}/steps-recipe/">Go Step Recipe</a>#}
-             <a href="/recipe/{{ selectedRecipe.id }}/steplist/{{ 1 }}">Go Step Recipe</a>
+             <a href="/recipe/{{ selectedRecipe.id }}/steplist/">Go to Step List</a>
         </div>
         <div>
             <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>

@@ -7,11 +7,16 @@
                 {{ form.as_p }}
                 <input type="submit" value="Submit"/>
                 <a href="{% url 'recipes' %}">Go Back</a>
-
-
             </form>
 
 
+        </div>
+        <div>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endfor %}
         </div>
 
     {% endblock %}
