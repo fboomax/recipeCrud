@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html class="html-container" lang="en">
+{#<head>#}
+{#  <meta charset="utf-8">#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{##}
+{#  <title>The best Recipe site</title>#}
+{#  <meta name="description" content="A simple HTML5 Template for new projects.">#}
+{#  <meta name="author" content="SitePoint">#}
+{##}
+{#  <meta property="og:title" content="A Basic HTML5 Template">#}
+{#  <meta property="og:type" content="website">#}
+{#  <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/">#}
+{#  <meta property="og:description" content="A simple HTML5 Template for new projects.">#}
+{#  <meta property="og:image" content="image.png">#}
+{#</head>#}
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>The best Recipe site</title>
-  <meta name="description" content="A simple HTML5 Template for new projects.">
-  <meta name="author" content="SitePoint">
-
-  <meta property="og:title" content="A Basic HTML5 Template">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/">
-  <meta property="og:description" content="A simple HTML5 Template for new projects.">
-  <meta property="og:image" content="image.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+	<title>Tracking Recipe</title>
 </head>
 
-<body>
+<body style="padding: 10px; margin: 10px; box-sizing: border-box;>
 
     {% include 'navbar.html' %}
     {% block content %}

@@ -1,33 +1,32 @@
 {% extends 'main.html' %}
 
     {% block content %}
-        <div>
-            <a href={% url 'home' %}>Go Back</a>
-        </div>
-
-        <h1>Recipes</h1>
-
+        <h3>Recipes</h3>
             <div>
                 <a href="{% url 'create-recipe' %}">Create Recipe</a>
+                <br>
+                <br>
             </div>
         <div>
-
             {% for selectedRecipe in allRecipes %}
-
                 <div>
-
                     <h5>
-                        {{ selectedRecipe.id }} -- <a href="{% url 'recipe' selectedRecipe.id %}">{{ selectedRecipe.name }}</a>
+                        <a href="{% url 'recipe' selectedRecipe.id %}">{{ selectedRecipe.name }}</a>
                     </h5>
-                    <h3>{{ selectedRecipe.serialId }}</h3>
-                    <h3>{{ selectedRecipe.created }}</h3>
+                    <h6>{{ selectedRecipe.serialId }}</h6>
+                    <h6>{{ selectedRecipe.updated }}</h6>
                 <img src={{ selectedRecipe.image.url }} width="250" height="250">
                     <br>
                 <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
                 <a href="{% url 'delete-recipe' selectedRecipe.id %}">Delete</a>
+                <br>
+                <br>
                 </div>
 
             {% endfor %}
+        </div>
+        <div>
+            <a href={% url 'home' %}>Go Back</a>
         </div>
 
     {% endblock %}
