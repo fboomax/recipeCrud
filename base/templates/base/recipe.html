@@ -1,9 +1,14 @@
 {% extends 'main.html' %}
 {% block content %}
-     <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+    <a href="/recipes/">Go Back</a>
     <h1>{{ selectedRecipe.name }}</h1>
     <div>
-                <a href="/recipe/{{ selectedRecipe.id }}/create-step/">Create Step</a>
+        <a href="/recipe/{{ selectedRecipe.id }}/create-step/">Create Step</a>
+        <a>&nbsp;&nbsp;&nbsp;</a>
+        <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
+        <br>
+        <a href="/recipe/{{ selectedRecipe.id }}/steplist/">Execute Cooking Recipe</a>
+        <br>
     </div>
     <div>
         <h5>
@@ -23,14 +28,13 @@
             <h3>Created: {{ selectedRecipe.created }}</h3>
         </div>
         <div>
-            <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
+
         </div>
         <div>
-{#             <a href="/recipe/{{ selectedRecipe.id }}/steps-recipe/">Go Step Recipe</a>#}
-             <a href="/recipe/{{ selectedRecipe.id }}/steplist/">Go to Step List</a>
+
         </div>
         <div>
-            <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+
         </div>
     </di>
 

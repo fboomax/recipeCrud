@@ -77,7 +77,7 @@ class StepRecipeListView(View):
         page = request.GET.get('page', 1)
         recipe = Recipe.objects.get(id=int(recipe_pk))
         stepsRecipe = recipe.steprecipe_set.order_by('step')
-        paginator = Paginator(stepsRecipe, per_page=2)
+        paginator = Paginator(stepsRecipe, per_page=1)
         page_object = paginator.get_page(page)
 
         context = {"page_obj": page_object, "recipe_id": recipe_pk}
