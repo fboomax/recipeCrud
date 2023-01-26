@@ -8,12 +8,22 @@
     {% for step in page_obj %}
         <div>
             <a href="/recipe/{{ recipe_id }}/update-step/{{ step.id }}">Edit</a>
+            &nbsp;&nbsp;
             <a href="/recipe/{{ recipe_id }}/delete-step/{{ step.id }}">Delete</a>
+            <br>
+            <br>
+            <br>
         </div>
+        <p>Step </p>
         <pre>{{step.step}}</pre>
+        <p>Title </p>
         <pre>{{step.title}}</pre>
+        <p>Description </p>
         <pre>{{step.description}}</pre>
+        <p>Duration </p>
         <pre>{{step.duration}}</pre>
+        <br>
+        <br>
         <div>
             <a href="/recipe/{{ recipe_id }}/steplist/{{ step.id }}/ingredients">Ingredients</a>
         </div>
@@ -24,9 +34,9 @@
         <div>
             {% if page_obj.has_previous %}
             <a href="/recipe/{{ recipe_id }}/steplist?page={{ page_obj.previous_page_number }}">
-                Previous Page
+                Previous Step
             </a>
-                <br><br>
+                &nbsp;&nbsp;
             {% endif%}
             {% for page_number in page_obj.paginator.page_range %}
                 <a
@@ -38,15 +48,15 @@
             {% endfor %}
 
             {% if page_obj.has_next %}
-                <br><br>
+                &nbsp;&nbsp;
                 <a href="/recipe/{{ recipe_id }}/steplist?page={{ page_obj.next_page_number }}">
-                Next Page
+                Next Step
                 </a>
             {% endif%}
         </div>
-        <br>
+        &nbsp;&nbsp;
         <div>
-            <a href="/recipe/{{ recipe_id }}/">Back to Step</a>
+            <a href="/recipe/{{ recipe_id }}/">Back to Recipe</a>
         </div>
 
 

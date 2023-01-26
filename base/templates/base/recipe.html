@@ -1,36 +1,35 @@
 {% extends 'main.html' %}
 {% block content %}
-     <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
-    <h1>{{ selectedRecipe.name }}</h1>
+    <h3>{{ selectedRecipe.name }}</h3>
     <div>
-                <a href="/recipe/{{ selectedRecipe.id }}/create-step/">Create Step</a>
+        <a href="/recipe/{{ selectedRecipe.id }}/create-step/">Create Step</a>
+        <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
+        <br>
+        <a href="/recipe/{{ selectedRecipe.id }}/steplist/">Execute Cooking Recipe</a>
+        <br>
+        <br>
+        <br>
     </div>
     <div>
-        <h5>
-            {{ selectedRecipe.id }} -- <a href="/recipe/{{ selectedRecipe.id }}">{{ selectedRecipe.name }}</a>
-        </h5>
+{#        <h5>#}
+{#            <a href="/recipe/{{ selectedRecipe.id }}">{{ selectedRecipe.name }}</a>#}
+{#        </h5>#}
     </div>
     <di>
         <div>
-            <h3>ID: {{ selectedRecipe.id }}</h3>
-            <h3>Name: {{ selectedRecipe.name }}</h3>
-            <h3>Category: {{ selectedRecipe.category }}</h3>
-            <h3>Difficulty: {{ selectedRecipe.difficulty }}</h3>
-            <h3>Steps: {{ selectedRecipe.steprecipe_set.count }}</h3>
-            <h3>Duration: {{ selectedRecipe.duration }}</h3>
+{#            <p>ID: {{ selectedRecipe.id }}</p>#}
+{#            <p>Name: {{ selectedRecipe.name }}</p>#}
+            <p>Category: {{ selectedRecipe.category }}</p>
+            <p>Difficulty: {{ selectedRecipe.difficulty }}</p>
+            <p>Steps: {{ selectedRecipe.steprecipe_set.count }}</p>
+            <p>Duration: {{ selectedRecipe.duration }}</p>
             <img src={{ selectedRecipe.image.url }} width="250" height="250">
-            <h3>Updated: {{ selectedRecipe.updated }}</h3>
-            <h3>Created: {{ selectedRecipe.created }}</h3>
+            <p>Updated: {{ selectedRecipe.updated }}</p>
+            <p>Created: {{ selectedRecipe.created }}</p>
         </div>
         <div>
-            <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
-        </div>
-        <div>
-{#             <a href="/recipe/{{ selectedRecipe.id }}/steps-recipe/">Go Step Recipe</a>#}
-             <a href="/recipe/{{ selectedRecipe.id }}/steplist/">Go to Step List</a>
-        </div>
-        <div>
-            <a href="{{ request.META.HTTP_REFERER }}">Go Back</a>
+                <a href="/recipes/">Go Back</a>
         </div>
     </di>
 
