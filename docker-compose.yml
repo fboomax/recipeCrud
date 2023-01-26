@@ -2,7 +2,7 @@ version: "3"
 services:
   web:
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    command: sh -c "python /code/manage.py migrate && python /code/manage.py loaddata db.json && python /code/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
       - media:/code/media
