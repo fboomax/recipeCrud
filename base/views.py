@@ -87,9 +87,8 @@ class StepRecipeListView(View):
 class IngredientListView(View):
 
     def get(self, request, recipe_pk, step_num):
-        recipe = Recipe.objects.get(id=int(recipe_pk))
-        stepRecipe = recipe.steprecipe_set.get(step=int(step_num))
-        ingredients = stepRecipe.ingredient_set.filter(stepRecipe__step=stepRecipe.step).all()
+
+        ingredients = Ingredient.objects.filter(stepRecipe__id=step_num)
         context = {'ingredients': ingredients, 'recipe_pk': int(recipe_pk), 'step_num': int(step_num)}
         return render(request, "base/ingredientlist.html", context)
 
@@ -105,7 +104,7 @@ class CreateIngredient(View):
         form = IngredientForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            data['stepRecipe'] = StepRecipe.objects.get(step=step_num, recipe=recipe_pk)
+            data['stepRecipe'] = StepRecipe.objects.get(id=step_num, recipe=recipe_pk)
             obj = Ingredient.objects.create(**data)
             obj.save()
             return redirect(reverse('ingredient-list', kwargs={'recipe_pk': recipe_pk, 'step_num': step_num}))
