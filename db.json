@@ -1,1 +1,764 @@
-[{"model": "auth.permission", "pk": 1, "fields": {"name": "Can add log entry", "content_type": 1, "codename": "add_logentry"}}, {"model": "auth.permission", "pk": 2, "fields": {"name": "Can change log entry", "content_type": 1, "codename": "change_logentry"}}, {"model": "auth.permission", "pk": 3, "fields": {"name": "Can delete log entry", "content_type": 1, "codename": "delete_logentry"}}, {"model": "auth.permission", "pk": 4, "fields": {"name": "Can view log entry", "content_type": 1, "codename": "view_logentry"}}, {"model": "auth.permission", "pk": 5, "fields": {"name": "Can add permission", "content_type": 2, "codename": "add_permission"}}, {"model": "auth.permission", "pk": 6, "fields": {"name": "Can change permission", "content_type": 2, "codename": "change_permission"}}, {"model": "auth.permission", "pk": 7, "fields": {"name": "Can delete permission", "content_type": 2, "codename": "delete_permission"}}, {"model": "auth.permission", "pk": 8, "fields": {"name": "Can view permission", "content_type": 2, "codename": "view_permission"}}, {"model": "auth.permission", "pk": 9, "fields": {"name": "Can add group", "content_type": 3, "codename": "add_group"}}, {"model": "auth.permission", "pk": 10, "fields": {"name": "Can change group", "content_type": 3, "codename": "change_group"}}, {"model": "auth.permission", "pk": 11, "fields": {"name": "Can delete group", "content_type": 3, "codename": "delete_group"}}, {"model": "auth.permission", "pk": 12, "fields": {"name": "Can view group", "content_type": 3, "codename": "view_group"}}, {"model": "auth.permission", "pk": 13, "fields": {"name": "Can add user", "content_type": 4, "codename": "add_user"}}, {"model": "auth.permission", "pk": 14, "fields": {"name": "Can change user", "content_type": 4, "codename": "change_user"}}, {"model": "auth.permission", "pk": 15, "fields": {"name": "Can delete user", "content_type": 4, "codename": "delete_user"}}, {"model": "auth.permission", "pk": 16, "fields": {"name": "Can view user", "content_type": 4, "codename": "view_user"}}, {"model": "auth.permission", "pk": 17, "fields": {"name": "Can add content type", "content_type": 5, "codename": "add_contenttype"}}, {"model": "auth.permission", "pk": 18, "fields": {"name": "Can change content type", "content_type": 5, "codename": "change_contenttype"}}, {"model": "auth.permission", "pk": 19, "fields": {"name": "Can delete content type", "content_type": 5, "codename": "delete_contenttype"}}, {"model": "auth.permission", "pk": 20, "fields": {"name": "Can view content type", "content_type": 5, "codename": "view_contenttype"}}, {"model": "auth.permission", "pk": 21, "fields": {"name": "Can add session", "content_type": 6, "codename": "add_session"}}, {"model": "auth.permission", "pk": 22, "fields": {"name": "Can change session", "content_type": 6, "codename": "change_session"}}, {"model": "auth.permission", "pk": 23, "fields": {"name": "Can delete session", "content_type": 6, "codename": "delete_session"}}, {"model": "auth.permission", "pk": 24, "fields": {"name": "Can view session", "content_type": 6, "codename": "view_session"}}, {"model": "auth.permission", "pk": 25, "fields": {"name": "Can add recipe", "content_type": 7, "codename": "add_recipe"}}, {"model": "auth.permission", "pk": 26, "fields": {"name": "Can change recipe", "content_type": 7, "codename": "change_recipe"}}, {"model": "auth.permission", "pk": 27, "fields": {"name": "Can delete recipe", "content_type": 7, "codename": "delete_recipe"}}, {"model": "auth.permission", "pk": 28, "fields": {"name": "Can view recipe", "content_type": 7, "codename": "view_recipe"}}, {"model": "auth.permission", "pk": 29, "fields": {"name": "Can add step recipe", "content_type": 8, "codename": "add_steprecipe"}}, {"model": "auth.permission", "pk": 30, "fields": {"name": "Can change step recipe", "content_type": 8, "codename": "change_steprecipe"}}, {"model": "auth.permission", "pk": 31, "fields": {"name": "Can delete step recipe", "content_type": 8, "codename": "delete_steprecipe"}}, {"model": "auth.permission", "pk": 32, "fields": {"name": "Can view step recipe", "content_type": 8, "codename": "view_steprecipe"}}, {"model": "auth.permission", "pk": 33, "fields": {"name": "Can add ingredient", "content_type": 9, "codename": "add_ingredient"}}, {"model": "auth.permission", "pk": 34, "fields": {"name": "Can change ingredient", "content_type": 9, "codename": "change_ingredient"}}, {"model": "auth.permission", "pk": 35, "fields": {"name": "Can delete ingredient", "content_type": 9, "codename": "delete_ingredient"}}, {"model": "auth.permission", "pk": 36, "fields": {"name": "Can view ingredient", "content_type": 9, "codename": "view_ingredient"}}, {"model": "auth.user", "pk": 1, "fields": {"password": "pbkdf2_sha256$260000$ytWG4MwwOUGVkkjN7tRZt8$/7/M4VFi4fqptGI1RrUTvKHDdJBztrqp6dfq2SRSFY8=", "last_login": "2023-01-26T17:17:34.307Z", "is_superuser": true, "username": "foivos", "first_name": "", "last_name": "", "email": "foivos@mail.com", "is_staff": true, "is_active": true, "date_joined": "2022-12-18T11:12:39.949Z", "groups": [], "user_permissions": []}}, {"model": "contenttypes.contenttype", "pk": 1, "fields": {"app_label": "admin", "model": "logentry"}}, {"model": "contenttypes.contenttype", "pk": 2, "fields": {"app_label": "auth", "model": "permission"}}, {"model": "contenttypes.contenttype", "pk": 3, "fields": {"app_label": "auth", "model": "group"}}, {"model": "contenttypes.contenttype", "pk": 4, "fields": {"app_label": "auth", "model": "user"}}, {"model": "contenttypes.contenttype", "pk": 5, "fields": {"app_label": "contenttypes", "model": "contenttype"}}, {"model": "contenttypes.contenttype", "pk": 6, "fields": {"app_label": "sessions", "model": "session"}}, {"model": "contenttypes.contenttype", "pk": 7, "fields": {"app_label": "base", "model": "recipe"}}, {"model": "contenttypes.contenttype", "pk": 8, "fields": {"app_label": "base", "model": "steprecipe"}}, {"model": "contenttypes.contenttype", "pk": 9, "fields": {"app_label": "base", "model": "ingredient"}}, {"model": "sessions.session", "pk": "9puhrli7u1u310vzaqvr6j2oc6gnlpbi", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSEwDi-X7vsNBBiQqoGktCvjv2uTLnR7zzn3xXzY1uq3kRc_E7swyU6_WwzpkdsO6B7arfPU27rMke8KP-jgU6f8vB7u30ENo35rI0V2OkIRrhCYJJ22qESMKgCCcJCVJZA2FJPxrIQGQkwFrTJOkgT2_gDAZza2:1pL5sU:aIhrlvB0aiwThhf1ShaJbmV_r2RIZqXkxYEkX9tN_1M", "expire_date": "2023-02-09T17:17:34.311Z"}}, {"model": "sessions.session", "pk": "lup629093b1of03vltvxea79ves9czdl", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSEwDi-X7vsNBBiQqoGktCvjv2uTLnR7zzn3xXzY1uq3kRc_E7swyU6_WwzpkdsO6B7arfPU27rMke8KP-jgU6f8vB7u30ENo35rI0V2OkIRrhCYJJ22qESMKgCCcJCVJZA2FJPxrIQGQkwFrTJOkgT2_gDAZza2:1p6rb6:dxGX7f7JgSiJvkNgY4Yv3iD8xQMzQUxqufxHQXZhtkc", "expire_date": "2023-01-01T11:12:48.305Z"}}, {"model": "base.recipe", "pk": 2, "fields": {"name": "Παστίτσιa", "category": "Ζυμαρικά", "difficulty": "HARD", "steps": 7, "duration": 120.0, "image": "media/Pastitsio_82TGtRJ.jpg", "updated": "2022-12-26T10:43:42.996Z", "created": "2022-12-18T12:22:42.810Z"}}, {"model": "base.recipe", "pk": 3, "fields": {"name": "Παϊδάκια", "category": "Κρεατικά", "difficulty": "MODERATE", "steps": 3, "duration": 120.0, "image": "media/paidakia.jpg", "updated": "2022-12-20T10:30:52.182Z", "created": "2022-12-18T12:51:16.189Z"}}, {"model": "base.recipe", "pk": 4, "fields": {"name": "Λαχανόρυζοa", "category": "Λαχανικά & Όσπρια", "difficulty": "MODERATE", "steps": 5, "duration": 65.0, "image": "media/spitiko-laxanoruzo-tis-giagias-liga-ilika-me-ntomata-ruzi-laxano-eisaimonadikigr.png", "updated": "2023-01-16T11:48:24.272Z", "created": "2022-12-18T13:19:04.633Z"}}, {"model": "base.recipe", "pk": 5, "fields": {"name": "Σπανακόρυζο", "category": "Λαχανικά", "difficulty": "EASY", "steps": 12, "duration": 12.0, "image": "media/spanakoruzo.jpg", "updated": "2022-12-22T12:38:35.176Z", "created": "2022-12-22T12:38:35.167Z"}}, {"model": "base.recipe", "pk": 6, "fields": {"name": "Μπουμπάρι", "category": "Μεζές", "difficulty": "HARD", "steps": 12, "duration": 120.0, "image": "media/mpoumpari.jpg", "updated": "2022-12-22T12:43:31.998Z", "created": "2022-12-22T12:43:31.993Z"}}, {"model": "base.recipe", "pk": 8, "fields": {"name": "Μουσακάς", "category": "Κιμάς", "difficulty": "HARD", "steps": 3, "duration": 20.0, "image": "media/light-mousakas.jpg", "updated": "2022-12-26T13:34:33.811Z", "created": "2022-12-22T14:12:10.753Z"}}, {"model": "base.recipe", "pk": 9, "fields": {"name": "Papoutsakia", "category": "ladera", "difficulty": "HARD", "steps": 12, "duration": 120.0, "image": "media/DSC_2446_Fotor.jpg", "updated": "2022-12-30T10:09:46.013Z", "created": "2022-12-30T10:09:46.005Z"}}, {"model": "base.recipe", "pk": 11, "fields": {"name": "mritsolesdsadsa", "category": "kreatika", "difficulty": "MODERATE", "steps": 4, "duration": 20.0, "image": "media/fe77b047cf65bbf66915926fa3c00c93_Generic.jpg", "updated": "2023-01-15T12:11:37.952Z", "created": "2023-01-15T10:00:08.885Z"}}, {"model": "base.steprecipe", "pk": 3, "fields": {"recipe": 8, "step": 11, "title": "Πρώτο 11111βήμα", "description": "stepRecipestepRecipestepRecipestepRecipestepRecipestepRecipe", "duration": 9.0, "image": "", "updated": "2023-01-15T12:46:08.859Z", "created": "2022-12-23T11:53:51.304Z"}}, {"model": "base.steprecipe", "pk": 6, "fields": {"recipe": 5, "step": 1, "title": "1o βημα παμε καλα", "description": "1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα", "duration": 20.0, "image": "", "updated": "2022-12-26T10:57:34.628Z", "created": "2022-12-26T10:57:34.628Z"}}, {"model": "base.steprecipe", "pk": 7, "fields": {"recipe": 4, "step": 1, "title": "1ο βημα", "description": "1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα", "duration": 16.0, "image": "", "updated": "2022-12-26T10:57:57.173Z", "created": "2022-12-26T10:57:57.173Z"}}, {"model": "base.steprecipe", "pk": 9, "fields": {"recipe": 8, "step": 2, "title": "222222", "description": "222222222222222222222222222", "duration": 2.0, "image": "", "updated": "2022-12-26T13:57:33.892Z", "created": "2022-12-26T13:57:33.874Z"}}, {"model": "base.steprecipe", "pk": 43, "fields": {"recipe": 2, "step": 3, "title": "3o bhma", "description": "3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhmasdewgre", "duration": 12.0, "image": "", "updated": "2023-01-15T13:54:47.055Z", "created": "2022-12-27T09:20:29.414Z"}}, {"model": "base.steprecipe", "pk": 50, "fields": {"recipe": 2, "step": 5, "title": "aaaaaaaaa", "description": "aaaaaaaaaaaaaaa", "duration": 4.0, "image": "", "updated": "2023-01-15T09:24:12.022Z", "created": "2023-01-15T09:24:12.016Z"}}, {"model": "base.steprecipe", "pk": 56, "fields": {"recipe": 4, "step": 1, "title": "aads", "description": "dsadasdsa", "duration": 32.0, "image": "", "updated": "2023-01-16T11:48:49.574Z", "created": "2023-01-16T11:48:49.567Z"}}, {"model": "base.steprecipe", "pk": 57, "fields": {"recipe": 4, "step": 2, "title": "dfsfdfs", "description": "dsfdfs", "duration": 32.0, "image": "", "updated": "2023-01-16T11:49:07.315Z", "created": "2023-01-16T11:49:07.310Z"}}, {"model": "base.steprecipe", "pk": 58, "fields": {"recipe": 11, "step": 1, "title": "1", "description": "1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o", "duration": 12.0, "image": "", "updated": "2023-01-16T11:56:52.293Z", "created": "2023-01-16T11:56:52.288Z"}}, {"model": "base.steprecipe", "pk": 59, "fields": {"recipe": 9, "step": 1, "title": "1", "description": "1o1o1o1o1o1o1o1o1o1o1o1o1o1ov", "duration": 21.0, "image": "", "updated": "2023-01-16T12:03:14.746Z", "created": "2023-01-16T12:03:14.740Z"}}, {"model": "base.steprecipe", "pk": 60, "fields": {"recipe": 2, "step": 1, "title": "1o", "description": "1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o", "duration": 12.0, "image": "", "updated": "2023-01-19T08:34:16.226Z", "created": "2023-01-19T08:34:16.217Z"}}, {"model": "base.steprecipe", "pk": 61, "fields": {"recipe": 2, "step": 2, "title": "2o", "description": "2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o", "duration": 32.0, "image": "", "updated": "2023-01-19T08:34:49.354Z", "created": "2023-01-19T08:34:49.349Z"}}, {"model": "base.steprecipe", "pk": 62, "fields": {"recipe": 9, "step": 3, "title": "3o", "description": "3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o", "duration": 21.0, "image": "", "updated": "2023-01-19T08:35:13.962Z", "created": "2023-01-19T08:35:13.957Z"}}, {"model": "base.steprecipe", "pk": 63, "fields": {"recipe": 4, "step": 5, "title": "5o", "description": "5o5o5o5o5o5o5o5o5o5o5o5o", "duration": 30.0, "image": "", "updated": "2023-01-19T12:11:40.294Z", "created": "2023-01-19T12:11:40.268Z"}}, {"model": "base.ingredient", "pk": 32, "fields": {"stepRecipe": 60, "name": "wwww", "description": "wwwwwww"}}, {"model": "base.ingredient", "pk": 33, "fields": {"stepRecipe": 43, "name": "fdssaf", "description": "sfdsfdsf"}}, {"model": "base.ingredient", "pk": 34, "fields": {"stepRecipe": 43, "name": "dfsfsad", "description": "fsadasfads"}}, {"model": "base.ingredient", "pk": 35, "fields": {"stepRecipe": 43, "name": "vdvsv", "description": "svvasdvsd"}}, {"model": "base.ingredient", "pk": 36, "fields": {"stepRecipe": 61, "name": "ddasdads", "description": "dsadsadasdsa"}}, {"model": "base.ingredient", "pk": 37, "fields": {"stepRecipe": 61, "name": "dsadsasdas", "description": "dsadsadsadas"}}, {"model": "base.ingredient", "pk": 38, "fields": {"stepRecipe": 61, "name": "dsadasdsa", "description": "asddsadasdasdsa"}}]
+[
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 4,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 4,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 4,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 4,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 5,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 5,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 5,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 5,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 6,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 6,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 6,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 6,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add recipe",
+      "content_type": 7,
+      "codename": "add_recipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change recipe",
+      "content_type": 7,
+      "codename": "change_recipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete recipe",
+      "content_type": 7,
+      "codename": "delete_recipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view recipe",
+      "content_type": 7,
+      "codename": "view_recipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add step recipe",
+      "content_type": 8,
+      "codename": "add_steprecipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change step recipe",
+      "content_type": 8,
+      "codename": "change_steprecipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete step recipe",
+      "content_type": 8,
+      "codename": "delete_steprecipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view step recipe",
+      "content_type": 8,
+      "codename": "view_steprecipe"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add ingredient",
+      "content_type": 9,
+      "codename": "add_ingredient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change ingredient",
+      "content_type": 9,
+      "codename": "change_ingredient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete ingredient",
+      "content_type": 9,
+      "codename": "delete_ingredient"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view ingredient",
+      "content_type": 9,
+      "codename": "view_ingredient"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$ytWG4MwwOUGVkkjN7tRZt8$/7/M4VFi4fqptGI1RrUTvKHDdJBztrqp6dfq2SRSFY8=",
+      "last_login": "2023-01-26T17:17:34.307Z",
+      "is_superuser": true,
+      "username": "foivos",
+      "first_name": "",
+      "last_name": "",
+      "email": "foivos@mail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-12-18T11:12:39.949Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": { "app_label": "admin", "model": "logentry" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": { "app_label": "auth", "model": "permission" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": { "app_label": "auth", "model": "group" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": { "app_label": "auth", "model": "user" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": { "app_label": "contenttypes", "model": "contenttype" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": { "app_label": "sessions", "model": "session" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": { "app_label": "base", "model": "recipe" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": { "app_label": "base", "model": "steprecipe" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": { "app_label": "base", "model": "ingredient" }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "9puhrli7u1u310vzaqvr6j2oc6gnlpbi",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSEwDi-X7vsNBBiQqoGktCvjv2uTLnR7zzn3xXzY1uq3kRc_E7swyU6_WwzpkdsO6B7arfPU27rMke8KP-jgU6f8vB7u30ENo35rI0V2OkIRrhCYJJ22qESMKgCCcJCVJZA2FJPxrIQGQkwFrTJOkgT2_gDAZza2:1pL5sU:aIhrlvB0aiwThhf1ShaJbmV_r2RIZqXkxYEkX9tN_1M",
+      "expire_date": "2023-02-09T17:17:34.311Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "lup629093b1of03vltvxea79ves9czdl",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSEwDi-X7vsNBBiQqoGktCvjv2uTLnR7zzn3xXzY1uq3kRc_E7swyU6_WwzpkdsO6B7arfPU27rMke8KP-jgU6f8vB7u30ENo35rI0V2OkIRrhCYJJ22qESMKgCCcJCVJZA2FJPxrIQGQkwFrTJOkgT2_gDAZza2:1p6rb6:dxGX7f7JgSiJvkNgY4Yv3iD8xQMzQUxqufxHQXZhtkc",
+      "expire_date": "2023-01-01T11:12:48.305Z"
+    }
+  },
+  {
+    "model": "base.recipe",
+    "pk": 2,
+    "fields": {
+      "name": "Παστίτσιa",
+      "category": "Ζυμαρικά",
+      "difficulty": "HARD",
+      "steps": 7,
+      "duration": 120.0,
+      "image": "media/Pastitsio.jpg",
+      "updated": "2022-12-26T10:43:42.996Z",
+      "created": "2022-12-18T12:22:42.810Z"
+    }
+  },
+  {
+    "model": "base.recipe",
+    "pk": 3,
+    "fields": {
+      "name": "Παϊδάκια",
+      "category": "Κρεατικά",
+      "difficulty": "MODERATE",
+      "steps": 3,
+      "duration": 120.0,
+      "image": "media/paidakia.jpg",
+      "updated": "2022-12-20T10:30:52.182Z",
+      "created": "2022-12-18T12:51:16.189Z"
+    }
+  },
+  {
+    "model": "base.recipe",
+    "pk": 4,
+    "fields": {
+      "name": "Λαχανόρυζοa",
+      "category": "Λαχανικά & Όσπρια",
+      "difficulty": "MODERATE",
+      "steps": 5,
+      "duration": 65.0,
+      "image": "media/laxanoruzo.png",
+      "updated": "2023-01-16T11:48:24.272Z",
+      "created": "2022-12-18T13:19:04.633Z"
+    }
+  },
+  {
+    "model": "base.recipe",
+    "pk": 5,
+    "fields": {
+      "name": "Σπανακόρυζο",
+      "category": "Λαχανικά",
+      "difficulty": "EASY",
+      "steps": 12,
+      "duration": 12.0,
+      "image": "media/spanakoruzo.jpg",
+      "updated": "2022-12-22T12:38:35.176Z",
+      "created": "2022-12-22T12:38:35.167Z"
+    }
+  },
+  {
+    "model": "base.recipe",
+    "pk": 6,
+    "fields": {
+      "name": "Μπουμπάρι",
+      "category": "Μεζές",
+      "difficulty": "HARD",
+      "steps": 12,
+      "duration": 120.0,
+      "image": "media/mpoumpari.jpg",
+      "updated": "2022-12-22T12:43:31.998Z",
+      "created": "2022-12-22T12:43:31.993Z"
+    }
+  },
+  {
+    "model": "base.recipe",
+    "pk": 8,
+    "fields": {
+      "name": "Μουσακάς",
+      "category": "Κιμάς",
+      "difficulty": "HARD",
+      "steps": 3,
+      "duration": 20.0,
+      "image": "media/light-mousakas.jpg",
+      "updated": "2022-12-26T13:34:33.811Z",
+      "created": "2022-12-22T14:12:10.753Z"
+    }
+  },
+  {
+    "model": "base.recipe",
+    "pk": 9,
+    "fields": {
+      "name": "Papoutsakia",
+      "category": "ladera",
+      "difficulty": "HARD",
+      "steps": 12,
+      "duration": 120.0,
+      "image": "media/papoutsakia.jpg",
+      "updated": "2022-12-30T10:09:46.013Z",
+      "created": "2022-12-30T10:09:46.005Z"
+    }
+  },
+  {
+    "model": "base.recipe",
+    "pk": 11,
+    "fields": {
+      "name": "mritsolesdsadsa",
+      "category": "kreatika",
+      "difficulty": "MODERATE",
+      "steps": 4,
+      "duration": 20.0,
+      "image": "media/xoirino.jpg",
+      "updated": "2023-01-15T12:11:37.952Z",
+      "created": "2023-01-15T10:00:08.885Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 3,
+    "fields": {
+      "recipe": 8,
+      "step": 11,
+      "title": "Πρώτο 11111βήμα",
+      "description": "stepRecipestepRecipestepRecipestepRecipestepRecipestepRecipe",
+      "duration": 9.0,
+      "image": "",
+      "updated": "2023-01-15T12:46:08.859Z",
+      "created": "2022-12-23T11:53:51.304Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 6,
+    "fields": {
+      "recipe": 5,
+      "step": 1,
+      "title": "1o βημα παμε καλα",
+      "description": "1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα 1o βημα παμε καλα",
+      "duration": 20.0,
+      "image": "",
+      "updated": "2022-12-26T10:57:34.628Z",
+      "created": "2022-12-26T10:57:34.628Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 7,
+    "fields": {
+      "recipe": 4,
+      "step": 1,
+      "title": "1ο βημα",
+      "description": "1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα 1ο βημα",
+      "duration": 16.0,
+      "image": "",
+      "updated": "2022-12-26T10:57:57.173Z",
+      "created": "2022-12-26T10:57:57.173Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 9,
+    "fields": {
+      "recipe": 8,
+      "step": 2,
+      "title": "222222",
+      "description": "222222222222222222222222222",
+      "duration": 2.0,
+      "image": "",
+      "updated": "2022-12-26T13:57:33.892Z",
+      "created": "2022-12-26T13:57:33.874Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 43,
+    "fields": {
+      "recipe": 2,
+      "step": 3,
+      "title": "3o bhma",
+      "description": "3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhma3o bhmasdewgre",
+      "duration": 12.0,
+      "image": "",
+      "updated": "2023-01-15T13:54:47.055Z",
+      "created": "2022-12-27T09:20:29.414Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 50,
+    "fields": {
+      "recipe": 2,
+      "step": 5,
+      "title": "aaaaaaaaa",
+      "description": "aaaaaaaaaaaaaaa",
+      "duration": 4.0,
+      "image": "",
+      "updated": "2023-01-15T09:24:12.022Z",
+      "created": "2023-01-15T09:24:12.016Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 56,
+    "fields": {
+      "recipe": 4,
+      "step": 1,
+      "title": "aads",
+      "description": "dsadasdsa",
+      "duration": 32.0,
+      "image": "",
+      "updated": "2023-01-16T11:48:49.574Z",
+      "created": "2023-01-16T11:48:49.567Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 57,
+    "fields": {
+      "recipe": 4,
+      "step": 2,
+      "title": "dfsfdfs",
+      "description": "dsfdfs",
+      "duration": 32.0,
+      "image": "",
+      "updated": "2023-01-16T11:49:07.315Z",
+      "created": "2023-01-16T11:49:07.310Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 58,
+    "fields": {
+      "recipe": 11,
+      "step": 1,
+      "title": "1",
+      "description": "1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o",
+      "duration": 12.0,
+      "image": "",
+      "updated": "2023-01-16T11:56:52.293Z",
+      "created": "2023-01-16T11:56:52.288Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 59,
+    "fields": {
+      "recipe": 9,
+      "step": 1,
+      "title": "1",
+      "description": "1o1o1o1o1o1o1o1o1o1o1o1o1o1ov",
+      "duration": 21.0,
+      "image": "",
+      "updated": "2023-01-16T12:03:14.746Z",
+      "created": "2023-01-16T12:03:14.740Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 60,
+    "fields": {
+      "recipe": 2,
+      "step": 1,
+      "title": "1o",
+      "description": "1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o1o",
+      "duration": 12.0,
+      "image": "",
+      "updated": "2023-01-19T08:34:16.226Z",
+      "created": "2023-01-19T08:34:16.217Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 61,
+    "fields": {
+      "recipe": 2,
+      "step": 2,
+      "title": "2o",
+      "description": "2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o2o",
+      "duration": 32.0,
+      "image": "",
+      "updated": "2023-01-19T08:34:49.354Z",
+      "created": "2023-01-19T08:34:49.349Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 62,
+    "fields": {
+      "recipe": 9,
+      "step": 3,
+      "title": "3o",
+      "description": "3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o3o",
+      "duration": 21.0,
+      "image": "",
+      "updated": "2023-01-19T08:35:13.962Z",
+      "created": "2023-01-19T08:35:13.957Z"
+    }
+  },
+  {
+    "model": "base.steprecipe",
+    "pk": 63,
+    "fields": {
+      "recipe": 4,
+      "step": 5,
+      "title": "5o",
+      "description": "5o5o5o5o5o5o5o5o5o5o5o5o",
+      "duration": 30.0,
+      "image": "",
+      "updated": "2023-01-19T12:11:40.294Z",
+      "created": "2023-01-19T12:11:40.268Z"
+    }
+  },
+  {
+    "model": "base.ingredient",
+    "pk": 32,
+    "fields": { "stepRecipe": 60, "name": "wwww", "description": "wwwwwww" }
+  },
+  {
+    "model": "base.ingredient",
+    "pk": 33,
+    "fields": { "stepRecipe": 43, "name": "fdssaf", "description": "sfdsfdsf" }
+  },
+  {
+    "model": "base.ingredient",
+    "pk": 34,
+    "fields": {
+      "stepRecipe": 43,
+      "name": "dfsfsad",
+      "description": "fsadasfads"
+    }
+  },
+  {
+    "model": "base.ingredient",
+    "pk": 35,
+    "fields": { "stepRecipe": 43, "name": "vdvsv", "description": "svvasdvsd" }
+  },
+  {
+    "model": "base.ingredient",
+    "pk": 36,
+    "fields": {
+      "stepRecipe": 61,
+      "name": "ddasdads",
+      "description": "dsadsadasdsa"
+    }
+  },
+  {
+    "model": "base.ingredient",
+    "pk": 37,
+    "fields": {
+      "stepRecipe": 61,
+      "name": "dsadsasdas",
+      "description": "dsadsadsadas"
+    }
+  },
+  {
+    "model": "base.ingredient",
+    "pk": 38,
+    "fields": {
+      "stepRecipe": 61,
+      "name": "dsadasdsa",
+      "description": "asddsadasdasdsa"
+    }
+  }
+]
