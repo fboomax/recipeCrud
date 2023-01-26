@@ -1,13 +1,14 @@
 {% extends 'main.html' %}
 
     {% block content %}
-        <h3>Recipes</h3>
-            <div>
-                <a href="{% url 'create-recipe' %}">Create Recipe</a>
-                <br>
-                <br>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin-right: 10px;">Recipes</h3>
+                <a class="btn" href="{% url 'create-recipe' %}">
+                    Create Recipe
+                </a>
+
             </div>
-        <div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start; padding: 10px;">
             {% for selectedRecipe in allRecipes %}
                 <div>
                     <h5>
@@ -15,12 +16,12 @@
                     </h5>
                     <h6>{{ selectedRecipe.serialId }}</h6>
                     <h6>{{ selectedRecipe.updated }}</h6>
-                <img src={{ selectedRecipe.image.url }} width="250" height="250">
+                    <img src={{ selectedRecipe.image.url }} width="250" height="250">
                     <br>
-                <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
-                <a href="{% url 'delete-recipe' selectedRecipe.id %}">Delete</a>
-                <br>
-                <br>
+                    <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>
+                    <a href="{% url 'delete-recipe' selectedRecipe.id %}">Delete</a>
+                    <br>
+                    <br>
                 </div>
 
             {% endfor %}
