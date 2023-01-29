@@ -42,7 +42,7 @@ class StepRecipe(models.Model):
 class Ingredient(models.Model):
     stepRecipe = models.ForeignKey(StepRecipe, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.stepRecipe} : {self.name}'
