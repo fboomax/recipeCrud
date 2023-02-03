@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
     {% block content %}
-        <h3>Step {{ step_num }} - Ingredient List </h3>
+        <h3>Ingredient List </h3>
         {% for ingredient in page_obj %}
             <pre>Name:{{ingredient.name}}</pre>
             <pre>Descpription:{{ingredient.description}}</pre>
