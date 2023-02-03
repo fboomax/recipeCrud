@@ -88,8 +88,10 @@ class IngredientListView(View):
 
     def get(self, request, recipe_pk, step_num):
 
+        recipe = Recipe.objects.get(id=int(recipe_pk))
+        stepRecipe = recipe.steprecipe_set.get(id=step_num)
         ingredients = Ingredient.objects.filter(stepRecipe__id=step_num)
-        context = {'ingredients': ingredients, 'recipe_pk': int(recipe_pk), 'step_num': int(step_num)}
+        context = {'ingredients': ingredients, 'recipe_pk': int(recipe_pk), 'step_num': int(step_num), 'stepRecipe':stepRecipe}
         return render(request, "base/ingredientlist.html", context)
 
 
