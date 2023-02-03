@@ -16,6 +16,7 @@
                     </h5>
                     <h6>{{ selectedRecipe.serialId }}</h6>
                     <h6>{{ selectedRecipe.updated }}</h6>
+{#                    <img src={{ selectedRecipe.image.url }} width="250" height="250">#}
                     <img src={{ selectedRecipe.image.url }} width="250" height="250">
                     <br>
                     <a href="{% url 'update-recipe' selectedRecipe.id %}">Edit</a>

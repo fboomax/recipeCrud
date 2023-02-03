@@ -54,7 +54,7 @@ class UpdateRecipeView(View):
 
     def post(self, request, pk):
         recipe = Recipe.objects.get(id=pk)
-        form = RecipeForm(request.POST, instance=recipe)
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             form.save()
             return redirect('recipes')
