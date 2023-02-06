@@ -16,14 +16,22 @@
         </div>
         <p>Step </p>
         <pre>{{step.step}}</pre>
+        <br>
         <p>Title </p>
         <pre>{{step.title}}</pre>
+        <br>
         <p>Description </p>
         <pre>{{step.description}}</pre>
+        <br>
         <p>Duration </p>
         <pre>{{step.duration}}</pre>
         <br>
+        <p>Image </p>
+        {% if step.image.url != NULL %}
+        <img src={{ step.image.url }} width="250" height="250">
         <br>
+        <br>
+        {% endif%}
         <div>
             <a href="/recipe/{{ recipe_id }}/steplist/{{ step.id }}/ingredients">Ingredients</a>
         </div>

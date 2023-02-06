@@ -1,6 +1,7 @@
 {% extends 'main.html' %}
     {% block content %}
-        <h3>Step {{ step_num }} - Ingredient List </h3>
+        <h3>Λίστα υλικών</h3>
+         <h5>Βήμα: {{ stepRecipe.title }}</h5>
         {% for ingredient in page_obj %}
             <pre>Name:{{ingredient.name}}</pre>
             <pre>Descpription:{{ingredient.description}}</pre>

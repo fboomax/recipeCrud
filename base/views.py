@@ -30,7 +30,6 @@ class CreateRecipeView(View):
         if form.is_valid():
             data = form.cleaned_data
             obj = Recipe.objects.create(**data)
-            print(obj)
             obj.save()
             return redirect('recipes')
         else:
@@ -54,7 +53,7 @@ class UpdateRecipeView(View):
 
     def post(self, request, pk):
         recipe = Recipe.objects.get(id=pk)
-        form = RecipeForm(request.POST, instance=recipe)
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             form.save()
             return redirect('recipes')
@@ -88,8 +87,10 @@ class IngredientListView(View):
 
     def get(self, request, recipe_pk, step_num):
 
+        recipe = Recipe.objects.get(id=int(recipe_pk))
+        stepRecipe = recipe.steprecipe_set.get(id=step_num)
         ingredients = Ingredient.objects.filter(stepRecipe__id=step_num)
-        context = {'ingredients': ingredients, 'recipe_pk': int(recipe_pk), 'step_num': int(step_num)}
+        context = {'ingredients': ingredients, 'recipe_pk': int(recipe_pk), 'step_num': int(step_num), 'stepRecipe':stepRecipe}
         return render(request, "base/ingredientlist.html", context)
 
 
@@ -146,7 +147,6 @@ class DeleteIngredient(View):
 
 class UpdateStep(View):
     def get(self, request, recipe_pk, step_pk):
-        print(StepRecipe.objects.all())
         stepRecipe = get_object_or_404(StepRecipe, pk=step_pk)
 
         form = StepRecipeForm(instance=stepRecipe)
@@ -155,7 +155,7 @@ class UpdateStep(View):
 
     def post(self, request, recipe_pk, step_pk):
         stepRecipe = get_object_or_404(StepRecipe, pk=step_pk)
-        form = StepRecipeForm(request.POST, instance=stepRecipe)
+        form = StepRecipeForm(request.POST, request.FILES, instance=stepRecipe)
         if form.is_valid():
             form.save()
             return redirect(reverse('step-list', kwargs={'recipe_pk': recipe_pk}))
