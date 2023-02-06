@@ -30,7 +30,6 @@ class CreateRecipeView(View):
         if form.is_valid():
             data = form.cleaned_data
             obj = Recipe.objects.create(**data)
-            print(obj)
             obj.save()
             return redirect('recipes')
         else:
@@ -148,7 +147,6 @@ class DeleteIngredient(View):
 
 class UpdateStep(View):
     def get(self, request, recipe_pk, step_pk):
-        print(StepRecipe.objects.all())
         stepRecipe = get_object_or_404(StepRecipe, pk=step_pk)
 
         form = StepRecipeForm(instance=stepRecipe)
