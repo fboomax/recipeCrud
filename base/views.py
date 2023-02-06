@@ -157,7 +157,7 @@ class UpdateStep(View):
 
     def post(self, request, recipe_pk, step_pk):
         stepRecipe = get_object_or_404(StepRecipe, pk=step_pk)
-        form = StepRecipeForm(request.POST, instance=stepRecipe)
+        form = StepRecipeForm(request.POST, request.FILES, instance=stepRecipe)
         if form.is_valid():
             form.save()
             return redirect(reverse('step-list', kwargs={'recipe_pk': recipe_pk}))
