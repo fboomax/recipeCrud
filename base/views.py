@@ -131,7 +131,9 @@ class UpdateIngredient(FormView, View):
         if form.is_valid():
             form.save()
             return redirect(reverse('ingredient-list', kwargs={'recipe_pk': recipe_pk, 'step_num': step_num}))
-
+        else:
+            context = {'form': form}
+            return render(request, 'base/ingredient_form.html', context)
 
 class DeleteIngredient(View):
     def get(self, request, recipe_pk, step_num, ingredient_pk):
@@ -159,6 +161,9 @@ class UpdateStep(View):
         if form.is_valid():
             form.save()
             return redirect(reverse('step-list', kwargs={'recipe_pk': recipe_pk}))
+        else:
+            context = {'form': form}
+            return render(request, 'base/step_form.html', context)
 
 
 class CreateStep(View):
@@ -174,6 +179,9 @@ class CreateStep(View):
             obj = StepRecipe.objects.create(**data)
             obj.save()
             return redirect(reverse('recipe', kwargs={'recipe_pk': recipe_pk}))
+        else:
+            context = {'form': form}
+            return render(request, 'base/step_form.html', context)
 
 
 class DeleteStep(View):
